@@ -38,7 +38,7 @@ export default function AboutUs() {
             <Image 
               alt="Solar Installation Team" 
               className="object-cover transition-transform duration-700 hover:scale-105" 
-              src="https://images.unsplash.com/photo-1592833159057-635d91bfd4eb?q=80&w=1000&auto=format&fit=crop"
+              src="/images/solar_hero_1783983605510.png"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -158,7 +158,7 @@ export default function AboutUs() {
               <Image 
                 alt="Himanshu Kushwah - CEO" 
                 className="object-cover" 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop"
+                src="/images/solar_training_1783983645115.png"
                 fill
                 sizes="(max-width: 768px) 192px, 256px"
               />

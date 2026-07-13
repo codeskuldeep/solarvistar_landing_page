@@ -12,7 +12,7 @@ export default function ContactUs() {
       <section className="pt-xl pb-lg px-md relative overflow-hidden mt-16 md:mt-0 min-h-[400px] flex items-center justify-center">
         <div className="absolute inset-0 z-[-1] opacity-30">
           <Image 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
+            src="/images/solar_family_1783983635437.png"
             alt="Office setting"
             fill
             className="object-cover"
@@ -166,7 +166,7 @@ export default function ContactUs() {
       {/* Map Section */}
       <section className="w-full h-96 relative bg-surface-dim">
         <Image 
-          src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2000&auto=format&fit=crop"
+          src="/images/solar_family_1783983635437.png"
           alt="Map of Madhya Pradesh"
           fill
           className="object-cover opacity-60"

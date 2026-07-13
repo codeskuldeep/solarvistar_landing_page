@@ -40,7 +40,7 @@ export default function YoungEntrepreneurs() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Young professionals collaborating" 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop" 
+                src="/images/solar_hero_1783983605510.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
@@ -58,7 +58,7 @@ export default function YoungEntrepreneurs() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Mentorship in Solar" 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" 
+                src="/images/solar_team_1783983625434.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

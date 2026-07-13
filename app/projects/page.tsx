@@ -58,7 +58,7 @@ export default function ProjectsGallery() {
               <Image 
                 className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
                 alt="Bhopal Residence Solar" 
-                src="https://images.unsplash.com/photo-1592833159057-635d91bfd4eb?q=80&w=600&auto=format&fit=crop" 
+                src="/images/solar_farm_1783983615127.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -76,7 +76,7 @@ export default function ProjectsGallery() {
               <Image 
                 className="object-cover" 
                 alt="After Installation" 
-                src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=600&auto=format&fit=crop" 
+                src="/images/solar_farm_1783983615127.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -96,7 +96,7 @@ export default function ProjectsGallery() {
             <Image 
               className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
               alt="Customer Story Thumbnail" 
-              src="https://images.unsplash.com/photo-1508514177221-188b1c77ce2c?q=80&w=600&auto=format&fit=crop" 
+              src="/images/solar_team_1783983625434.png" 
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
@@ -115,7 +115,7 @@ export default function ProjectsGallery() {
               <Image 
                 className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
                 alt="Precision Installation" 
-                src="https://images.unsplash.com/photo-1509391365360-51ce59478fac?q=80&w=600&auto=format&fit=crop" 
+                src="/images/solar_family_1783983635437.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />

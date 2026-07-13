@@ -15,7 +15,7 @@ export default function AwardsAchievements() {
       {/* Hero Section */}
       <section className="relative w-full rounded-xl overflow-hidden mt-sm md:mt-lg mb-xl min-h-[614px] flex items-center shadow-lg group">
         <Image 
-          src="https://images.unsplash.com/photo-1567427017947-bac5cb025c83?q=80&w=2000&auto=format&fit=crop"
+          src="/images/solar_farm_1783983615127.png"
           alt="Awards Background"
           fill
           className="object-cover z-0"
@@ -84,7 +84,7 @@ export default function AwardsAchievements() {
           <GlassCard delay={0.4} className="flex flex-col gap-4 group md:col-span-2 lg:col-span-1">
             <div className="w-full h-40 rounded-lg bg-surface-container mb-2 overflow-hidden relative">
               <Image 
-                src="https://images.unsplash.com/photo-1620241608701-94ef138c7ec9?q=80&w=600&auto=format&fit=crop"
+                src="/images/solar_farm_1783983615127.png"
                 alt="PM Surya Ghar Authorized"
                 fill
                 className="object-cover"
@@ -103,7 +103,7 @@ export default function AwardsAchievements() {
             <div className="flex flex-col md:flex-row gap-6 h-full items-center">
               <div className="w-full md:w-1/3 h-48 md:h-full rounded-lg overflow-hidden shrink-0 relative">
                 <Image 
-                  src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=600&auto=format&fit=crop"
+                  src="/images/solar_training_1783983645115.png"
                   alt="Featured in Times of India"
                   fill
                   className="object-cover"

@@ -46,7 +46,7 @@ export default function PMSuryaGhar() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Solar panels at sunset" 
-                src="https://images.unsplash.com/photo-1508514177221-188b1c77ce2c?q=80&w=1000&auto=format&fit=crop" 
+                src="/images/solar_training_1783983645115.png" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
@@ -75,7 +75,7 @@ export default function PMSuryaGhar() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Modern residential rooftop with solar panels" 
-                src="https://images.unsplash.com/photo-1588610537024-e219fb074902?q=80&w=1000&auto=format&fit=crop"
+                src="/images/solar_team_1783983625434.png"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
               />

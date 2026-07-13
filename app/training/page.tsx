@@ -12,7 +12,7 @@ export default function SolarTraining() {
       <section className="relative min-h-[819px] flex items-center pt-xl pb-xl overflow-hidden mt-16 md:mt-0">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop"
+            src="/images/solar_family_1783983635437.png"
             alt="Solar Training"
             fill
             className="object-cover opacity-30"
@@ -87,7 +87,7 @@ export default function SolarTraining() {
               <Image 
                 className="object-cover" 
                 alt="Education and Technical Training" 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop" 
+                src="/images/solar_team_1783983625434.png" 
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
