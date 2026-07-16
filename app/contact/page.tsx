@@ -13,10 +13,11 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setIsLoading(true);
     setError("");
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -34,7 +35,7 @@ export default function ContactUs() {
 
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 5000);
-      e.currentTarget.reset();
+      form.reset();
     } catch (err: any) {
       setError(err.message || "An error occurred while submitting.");
     } finally {

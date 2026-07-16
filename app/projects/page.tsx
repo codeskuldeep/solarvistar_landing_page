@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import GlassCard from "../../components/ui/GlassCard";
-import SectionHeading from "../../components/ui/SectionHeading";
+import fs from "fs";
+import path from "path";
 import GradientButton from "../../components/ui/GradientButton";
+import GalleryGrid from "../../components/ui/GalleryGrid";
 
 export const metadata: Metadata = {
   title: "Projects & Gallery | Solar Vistar",
@@ -10,6 +10,30 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsGallery() {
+  // Read images from public/gallery
+  const galleryPath = path.join(process.cwd(), 'public', 'gallery');
+  let images: string[] = [];
+  
+  try {
+    if (fs.existsSync(galleryPath)) {
+      const files = fs.readdirSync(galleryPath);
+      images = files
+        .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .map(file => `/gallery/${file}`);
+    }
+  } catch (error) {
+    console.error("Error reading gallery directory:", error);
+  }
+
+  // Fallback to existing images if the folder is empty
+  if (images.length === 0) {
+    images = [
+      "/images/solar_farm_1783983615127.png",
+      "/images/solar_team_1783983625434.png",
+      "/images/solar_family_1783983635437.png"
+    ];
+  }
+
   return (
     <main className="w-full overflow-hidden">
       {/* Hero Section */}
@@ -41,113 +65,9 @@ export default function ProjectsGallery() {
         </div>
       </section>
 
-      {/* Interactive Filter Chips */}
-      <section className="max-w-container-max mx-auto px-md mb-xl animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-        <div className="flex overflow-x-auto hide-scrollbar gap-sm py-xs pl-xs" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full bg-primary text-on-primary shadow-md hover:scale-102 transition-transform whitespace-nowrap">
-            All
-          </button>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full glass-card border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap hover:scale-102">
-            Residential Installations
-          </button>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full glass-card border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap hover:scale-102">
-            Before &amp; After
-          </button>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full glass-card border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap hover:scale-102">
-            Customer Visits
-          </button>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full glass-card border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap hover:scale-102">
-            Project Videos
-          </button>
-          <button className="flex-none font-label-md text-label-md px-sm py-xs rounded-full glass-card border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap hover:scale-102">
-            Team
-          </button>
-        </div>
-      </section>
-
       {/* Masonry Gallery */}
       <section className="max-w-container-max mx-auto px-md mb-xl">
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-md space-y-md">
-          {/* Gallery Item 1: Standard Image */}
-          <GlassCard hover={false} delay={0.2} className="break-inside-avoid relative group overflow-hidden !p-0">
-            <div className="relative w-full aspect-[4/5]">
-              <Image 
-                className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
-                alt="Bhopal Residence Solar" 
-                src="/images/solar_farm_1783983615127.png" 
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-sm">
-                <p className="font-label-md text-label-md text-white">Bhopal Residence</p>
-                <p className="font-label-sm text-label-sm text-white/80">5kW System</p>
-              </div>
-            </div>
-          </GlassCard>
-
-          {/* Gallery Item 2: Before & After */}
-          <GlassCard hover={false} delay={0.3} className="break-inside-avoid relative group overflow-hidden !p-0">
-            <div className="relative h-[300px] w-full overflow-hidden">
-              {/* After Image */}
-              <Image 
-                className="object-cover" 
-                alt="After Installation" 
-                src="/images/solar_farm_1783983615127.png" 
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              {/* Before Image Clip (Simulated slider) */}
-              <div className="absolute inset-0 w-1/2 border-r-2 border-white overflow-hidden bg-surface-container-highest">
-                <div className="absolute inset-0 flex items-center justify-center text-on-surface-variant font-label-md text-label-md opacity-50">Before</div>
-              </div>
-              <div className="absolute bottom-sm right-sm bg-primary/80 backdrop-blur-sm px-xs py-base rounded text-on-primary font-label-sm text-label-sm">After</div>
-            </div>
-            <div className="p-sm bg-white/70 dark:bg-black/70 backdrop-blur-md absolute bottom-0 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="font-label-md text-label-md text-on-surface">Transformation in Indore</p>
-            </div>
-          </GlassCard>
-
-          {/* Gallery Item 3: Video Thumbnail */}
-          <GlassCard hover={false} delay={0.4} className="break-inside-avoid relative group overflow-hidden !p-0 aspect-[4/3] flex items-center justify-center cursor-pointer">
-            <Image 
-              className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
-              alt="Customer Story Thumbnail" 
-              src="/images/solar_team_1783983625434.png" 
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-            <div className="relative glass-card border border-white/20 w-16 h-16 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <span className="material-symbols-outlined text-[32px] fill text-primary">play_arrow</span>
-            </div>
-            <div className="absolute bottom-sm left-sm right-sm">
-              <p className="font-label-md text-label-md text-white drop-shadow-md">Customer Story: The Sharma Family</p>
-            </div>
-          </GlassCard>
-
-          {/* Gallery Item 4: Standard Image */}
-          <GlassCard hover={false} delay={0.5} className="break-inside-avoid relative group overflow-hidden !p-0">
-            <div className="relative w-full aspect-square">
-              <Image 
-                className="object-cover transform group-hover:scale-105 transition-transform duration-500 ease-in-out" 
-                alt="Precision Installation" 
-                src="/images/solar_family_1783983635437.png" 
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-sm">
-                <p className="font-label-md text-label-md text-white">Precision Installation</p>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
-
-        {/* Load More */}
-        <div className="mt-lg flex justify-center animate-fade-in-up" style={{ animationDelay: '600ms' }}>
-          <button className="font-label-md text-label-md text-primary bg-transparent border-[1.5px] border-primary px-lg py-sm rounded-full hover:scale-102 hover:shadow-lg transition-all duration-200">
-            Load More
-          </button>
-        </div>
+        <GalleryGrid images={images} />
       </section>
 
       {/* CTA Band */}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,8 +8,13 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="flex flex-col gap-sm">
           <div className="flex items-center gap-xs">
-            <span className="material-symbols-outlined text-secondary-container text-3xl">solar_power</span>
-            <span className="font-headline-sm text-headline-sm font-bold text-surface-bright">Solar Vistar</span>
+            <Image 
+              src="/logo.PNG" 
+              alt="Solar Vistar Logo" 
+              width={180} 
+              height={48} 
+              className="h-10 md:h-12 w-auto object-contain bg-white/10 rounded-md p-1"
+            />
           </div>
           <p className="font-body-md text-body-md text-surface-variant mt-2">
             India&apos;s First Solar Cooperative Society. Powering homes, empowering communities.

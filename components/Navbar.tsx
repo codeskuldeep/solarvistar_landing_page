@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
@@ -22,10 +23,14 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-gutter py-base w-full max-w-container-max mx-auto h-[72px]">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-xs">
-          <span className="material-symbols-outlined text-solar-orange text-3xl">solar_power</span>
-          <span className="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">
-            Solar Vistar
-          </span>
+          <Image 
+            src="/logo.PNG" 
+            alt="Solar Vistar Logo" 
+            width={180} 
+            height={48} 
+            className="h-10 md:h-12 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Navigation Links (Desktop) */}

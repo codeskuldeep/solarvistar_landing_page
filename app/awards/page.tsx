@@ -3,6 +3,7 @@ import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Awards & Achievements | Solar Vistar",
@@ -116,9 +117,9 @@ export default function AwardsAchievements() {
                 </div>
                 <h3 className="font-headline-sm text-headline-sm text-on-surface">Featured in Times of India</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant">Recognized as a pioneering model for community-driven renewable energy adoption, highlighting our innovative financial structures that make solar accessible to middle-income households.</p>
-                <button className="mt-2 text-primary font-label-md text-label-md flex items-center gap-2 hover:gap-3 transition-all w-fit">
+                <Link href={"/projects"} className="mt-2 text-primary font-label-md text-label-md flex items-center gap-2 hover:gap-3 transition-all w-fit">
                   Read Full Article <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
-                </button>
+                </Link>
               </div>
             </div>
           </GlassCard>
