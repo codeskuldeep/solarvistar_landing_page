@@ -1,11 +1,46 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
 
 export default function SolarTraining() {
+  const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5001/api/website/training", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit registration");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+      e.currentTarget.reset();
+    } catch (err: any) {
+      setError(err.message || "An error occurred while submitting.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <main className="w-full overflow-hidden">
       {/* Hero Section */}
@@ -94,42 +129,52 @@ export default function SolarTraining() {
             </div>
           </div>
           
-          <GlassCard delay={0.2} hover={false} className="p-8 border border-outline-variant/30 shadow-lg">
+          <GlassCard delay={0.2} hover={false} className="p-8 border border-outline-variant/30 shadow-lg relative">
             <h3 className="font-headline-sm text-headline-sm text-primary mb-md">Registration Form</h3>
-            <form className="flex flex-col gap-sm" onSubmit={(e) => e.preventDefault()}>
+            {submitted ? (
+              <div className="bg-green-500/10 border border-green-500 text-green-700 dark:text-green-400 p-4 rounded-lg flex items-center gap-3">
+                <span className="material-symbols-outlined">check_circle</span>
+                <p>Thank you! Your registration has been received. We will contact you with details.</p>
+              </div>
+            ) : (
+            <form className="flex flex-col gap-sm" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-xs">
                 <label className="font-label-sm text-label-sm text-outline">Full Name</label>
-                <input className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="John Doe" type="text"/>
+                <input required name="name" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="John Doe" type="text"/>
               </div>
               <div className="flex flex-col gap-xs">
                 <label className="font-label-sm text-label-sm text-outline">Mobile Number</label>
-                <input className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+91 XXXXX XXXXX" type="tel"/>
+                <input required name="mobile" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+91 XXXXX XXXXX" type="tel"/>
               </div>
               <div className="flex flex-col gap-xs">
                 <label className="font-label-sm text-label-sm text-outline">City</label>
-                <input className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Mumbai" type="text"/>
+                <input required name="city" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Mumbai" type="text"/>
               </div>
               <div className="flex flex-col gap-xs">
                 <label className="font-label-sm text-label-sm text-outline">Background/Profession</label>
-                <select className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" defaultValue="">
+                <select required name="profession" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" defaultValue="">
                   <option disabled value="">Select your background</option>
-                  <option>Student</option>
-                  <option>Engineer</option>
-                  <option>Electrician</option>
-                  <option>Business Owner</option>
-                  <option>Other</option>
+                  <option value="Student">Student</option>
+                  <option value="Engineer">Engineer</option>
+                  <option value="Electrician">Electrician</option>
+                  <option value="Business Owner">Business Owner</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div className="flex flex-col gap-xs">
                 <label className="font-label-sm text-label-sm text-outline">Message (Optional)</label>
-                <textarea className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Any questions?" rows={3}></textarea>
+                <textarea name="message" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Any questions?" rows={3}></textarea>
               </div>
+              {error && (
+                <div className="text-error text-sm">{error}</div>
+              )}
               <div className="flex flex-col sm:flex-row gap-sm mt-md">
-                <GradientButton type="submit" className="flex-1 text-center font-bold !w-full">
-                  Register for Training
+                <GradientButton type="submit" className="flex-1 text-center font-bold !w-full disabled:opacity-70" disabled={isLoading}>
+                  {isLoading ? "Submitting..." : "Register for Training"}
                 </GradientButton>
               </div>
             </form>
+            )}
           </GlassCard>
         </div>
       </section>

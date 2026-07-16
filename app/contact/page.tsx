@@ -8,11 +8,38 @@ import GradientButton from "../../components/ui/GradientButton";
 
 export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsLoading(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5001/api/website/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit inquiry");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+      e.currentTarget.reset();
+    } catch (err: any) {
+      setError(err.message || "An error occurred while submitting.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,40 +79,39 @@ export default function ContactUs() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
                 <div>
                   <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="name">Name</label>
-                  <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="name" placeholder="Your full name" type="text"/>
+                  <input required name="customerName" className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="name" placeholder="Your full name" type="text"/>
                 </div>
                 <div>
                   <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="mobile">Mobile Number</label>
-                  <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="mobile" placeholder="+91" type="tel"/>
+                  <input required name="phoneNumber" className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="mobile" placeholder="+91" type="tel"/>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
                 <div>
                   <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="city">City</label>
-                  <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="city" placeholder="City" type="text"/>
+                  <input required name="city" className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="city" placeholder="City" type="text"/>
                 </div>
                 <div>
                   <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="address">Address</label>
-                  <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="address" placeholder="Full address" type="text"/>
+                  <input name="address" className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="address" placeholder="Full address" type="text"/>
                 </div>
-              </div>
-              
-              <div>
-                <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="bill">Monthly Electricity Bill (Optional)</label>
-                <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 focus:outline-none" id="bill" type="file"/>
               </div>
               
               <div>
                 <label className="block font-label-sm text-label-sm text-outline mb-xs" htmlFor="message">Message</label>
-                <textarea className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="message" placeholder="Any specific requirements?" rows={4}></textarea>
+                <textarea name="requirements" className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-xs focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-colors focus:outline-none" id="message" placeholder="Any specific requirements?" rows={4}></textarea>
               </div>
+
+              {error && (
+                <div className="text-error text-sm mt-2">{error}</div>
+              )}
               
               <div className="flex flex-col sm:flex-row gap-sm pt-sm">
-                <GradientButton type="submit" className="flex-1 font-semibold !w-full">
-                  Book Free Site Visit
+                <GradientButton type="submit" className="flex-1 font-semibold !w-full disabled:opacity-70" disabled={isLoading}>
+                  {isLoading ? "Submitting..." : "Book Free Site Visit"}
                 </GradientButton>
-                <GradientButton className="flex-1 !bg-[#25D366] !text-white flex items-center justify-center gap-xs font-semibold !w-full !shadow-none hover:scale-102 hover:!shadow-md transition-all" onClick={() => window.open('https://wa.me/919303127775', '_blank')}>
+                <GradientButton type="button" className="flex-1 !bg-[#25D366] !text-white flex items-center justify-center gap-xs font-semibold !w-full !shadow-none hover:scale-102 hover:!shadow-md transition-all" onClick={() => window.open('https://wa.me/919303127775', '_blank')}>
                   <span className="material-symbols-outlined fill text-[20px]">chat</span>
                   WhatsApp Now
                 </GradientButton>

@@ -61,12 +61,15 @@ export default function Home() {
             />
             {/* Dark overlay for text legibility, using deep primary/surface colors */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-            <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 flex flex-col justify-end items-start w-full">
-              <span className="bg-primary/90 text-on-primary backdrop-blur-md px-4 py-1 rounded-full text-sm font-bold inline-block mb-4">Cooperative Model</span>
-              <h3 className="text-2xl md:text-4xl font-display-lg text-white font-bold mb-4 w-full">Share in the profits, not the margins.</h3>
-              <p className="text-white/90 font-body-md md:font-body-lg w-full max-w-lg">
-                Because we are a cooperative society, you become a member, not just a customer. We pool resources to buy Tier-1 equipment at wholesale prices and pass 100% of the savings directly to you.
-              </p>
+            
+            <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end z-10">
+              <div className="w-full max-w-[500px]">
+                <span className="bg-primary/90 text-on-primary backdrop-blur-md px-4 py-1 rounded-full text-sm font-bold inline-block mb-4">Cooperative Model</span>
+                <h3 className="text-3xl md:text-4xl font-display-lg text-white font-bold mb-4 leading-tight">Share in the profits, not the margins.</h3>
+                <p className="text-white/90 font-body-md md:font-body-lg">
+                  Because we are a cooperative society, you become a member, not just a customer. We pool resources to buy Tier-1 equipment at wholesale prices and pass 100% of the savings directly to you.
+                </p>
+              </div>
             </div>
           </GlassCard>
 
@@ -147,17 +150,16 @@ export default function Home() {
       </section>
 
       {/* Massive CTA Section */}
-      <section className="py-20 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary -z-20"></div>
+      <section className="py-20 md:py-24 relative overflow-hidden bg-primary">
         <Image 
           src="/images/solar_family_1783983635437.png"
           alt="Happy family outside their home"
           fill
           sizes="100vw"
-          className="object-cover opacity-50 -z-10"
+          className="object-cover opacity-50 mix-blend-overlay"
         />
         {/* Solid dark gradient overlay to ensure text is ALWAYS visible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/80 -z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/80"></div>
         
         <div className="max-w-4xl mx-auto text-center px-gutter relative z-10">
           <span className="w-20 h-20 bg-white/10 border border-white/20 text-white rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-md">
