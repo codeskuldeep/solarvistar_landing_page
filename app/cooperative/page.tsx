@@ -13,7 +13,7 @@ export default function CooperativeSociety() {
   return (
     <main className="w-full overflow-hidden">
       {/* Page Hero */}
-      <section className="relative pt-xl pb-lg px-md md:px-gutter max-w-container-max mx-auto flex flex-col items-center text-center animate-fade-in-up">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-md md:px-gutter max-w-container-max mx-auto flex flex-col items-center text-center animate-fade-in-up">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-fixed-dim/40 via-surface to-surface"></div>
         <div className="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant mb-md">
           <span className="hover:text-primary cursor-pointer transition-colors">Home</span>
@@ -26,7 +26,7 @@ export default function CooperativeSociety() {
       </section>
 
       {/* Explanation Block */}
-      <section className="py-xl px-md md:px-gutter max-w-container-max mx-auto">
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
           <GlassCard delay={0.2} hover={false} className="relative rounded-xl overflow-hidden !p-0">
             <div className="relative w-full aspect-[4/3]">
@@ -41,7 +41,7 @@ export default function CooperativeSociety() {
             </div>
           </GlassCard>
           <div className="flex flex-col gap-md">
-            <SectionHeading title="Power to the People" centered={false} />
+            <SectionHeading eyebrow="THE CONCEPT" title="Power to the People" centered={false} />
             <div className="font-body-lg text-body-lg text-on-surface-variant flex flex-col gap-sm -mt-md">
               <p>A cooperative society is fundamentally about people uniting for a common goal. It operates on the principles of mutual cooperation and democratic control, prioritizing shared growth over pure profit.</p>
               <p>In the context of solar energy, this means transparent pricing, community-driven decisions, and a commitment to ensuring that the benefits of sustainable energy are accessible to all members of the community, not just a select few.</p>
@@ -50,9 +50,53 @@ export default function CooperativeSociety() {
         </div>
       </section>
 
-      {/* "Why Choose a Cooperative Society?" */}
-      <section className="py-xl px-md md:px-gutter max-w-container-max mx-auto bg-surface-container-low rounded-3xl my-xl">
+      {/* Comparison: Cooperative vs Traditional */}
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto">
         <SectionHeading 
+          eyebrow="COMPARISON"
+          title="The Cooperative Advantage" 
+          subtitle="See how our model compares to traditional private solar vendors."
+          centered
+        />
+        <div className="mt-12 overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[600px]">
+            <thead>
+              <tr className="border-b-2 border-outline-variant/50">
+                <th className="py-4 px-6 font-headline-sm text-on-surface w-1/3">Feature</th>
+                <th className="py-4 px-6 font-headline-sm text-primary w-1/3 bg-primary/5 rounded-tl-xl border-t border-l border-primary/20">Solar Vistar (Coop)</th>
+                <th className="py-4 px-6 font-headline-sm text-on-surface-variant w-1/3 border-t border-r border-outline-variant/20 rounded-tr-xl bg-surface-container-low">Traditional Vendor</th>
+              </tr>
+            </thead>
+            <tbody className="font-body-md">
+              <tr className="border-b border-outline-variant/20">
+                <td className="py-4 px-6 text-on-surface font-semibold">Pricing Model</td>
+                <td className="py-4 px-6 bg-primary/5 border-l border-primary/20 text-on-surface">Wholesale cost + minimal admin fee</td>
+                <td className="py-4 px-6 bg-surface-container-low border-r border-outline-variant/20 text-on-surface-variant">Retail cost + high profit margins</td>
+              </tr>
+              <tr className="border-b border-outline-variant/20">
+                <td className="py-4 px-6 text-on-surface font-semibold">Subsidy Assistance</td>
+                <td className="py-4 px-6 bg-primary/5 border-l border-primary/20 text-on-surface">100% End-to-end paperwork handled</td>
+                <td className="py-4 px-6 bg-surface-container-low border-r border-outline-variant/20 text-on-surface-variant">Often left to the customer</td>
+              </tr>
+              <tr className="border-b border-outline-variant/20">
+                <td className="py-4 px-6 text-on-surface font-semibold">Ownership</td>
+                <td className="py-4 px-6 bg-primary/5 border-l border-primary/20 text-on-surface">Customer becomes a member (owner)</td>
+                <td className="py-4 px-6 bg-surface-container-low border-r border-outline-variant/20 text-on-surface-variant">Customer is just a buyer</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-6 text-on-surface font-semibold">Service Guarantee</td>
+                <td className="py-4 px-6 bg-primary/5 border-l border-b border-primary/20 rounded-bl-xl text-on-surface">25-Year comprehensive support</td>
+                <td className="py-4 px-6 bg-surface-container-low border-r border-b border-outline-variant/20 rounded-br-xl text-on-surface-variant">Standard manufacturer warranty only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* "Why Choose a Cooperative Society?" */}
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto bg-surface-container-low rounded-3xl my-xl">
+        <SectionHeading 
+          eyebrow="BENEFITS"
           title="Why Choose a Cooperative Society?" 
           subtitle="Discover the core values that drive our community-focused approach to renewable energy." 
         />
@@ -142,8 +186,46 @@ export default function CooperativeSociety() {
         </div>
       </section>
 
+      {/* Member Success Stories */}
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto">
+        <SectionHeading 
+          eyebrow="TESTIMONIALS"
+          title="Member Success Stories" 
+          subtitle="Real members sharing their experience with the cooperative model."
+          centered
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <GlassCard className="!p-8 bg-surface-container-lowest border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <span className="material-symbols-outlined text-4xl text-primary/40 mb-4 block">format_quote</span>
+              <p className="font-body-lg text-on-surface italic mb-6">"Joining the cooperative was the best decision for my family. We not only got a top-tier solar system at a fraction of the market cost, but we also feel like we are part of a larger community movement. Our electricity bill went from ₹3000 to zero."</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">M</div>
+              <div>
+                <h4 className="font-headline-sm text-on-surface text-base">Manish Patidar</h4>
+                <p className="font-label-sm text-on-surface-variant uppercase tracking-wider">Khargone Member</p>
+              </div>
+            </div>
+          </GlassCard>
+          <GlassCard className="!p-8 bg-surface-container-lowest border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <span className="material-symbols-outlined text-4xl text-primary/40 mb-4 block">format_quote</span>
+              <p className="font-body-lg text-on-surface italic mb-6">"What impressed me most was the transparency. The cooperative showed me exactly what the panels cost them. The installation was swift, and the PM Surya Ghar subsidy was processed without me having to visit a single government office."</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">S</div>
+              <div>
+                <h4 className="font-headline-sm text-on-surface text-base">Sunita Chouhan</h4>
+                <p className="font-label-sm text-on-surface-variant uppercase tracking-wider">Indore Member</p>
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </section>
+
       {/* Quote Banner */}
-      <section className="py-xl px-md md:px-gutter max-w-container-max mx-auto animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto animate-fade-in-up" style={{ animationDelay: '400ms' }}>
         <div className="bg-surface-container rounded-3xl p-xl shadow-lg border border-outline-variant/30 flex items-center justify-center text-center relative overflow-hidden">
           <span className="material-symbols-outlined text-[120px] text-primary/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">format_quote</span>
           <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary relative z-10 max-w-4xl capitalize leading-tight">
@@ -153,7 +235,7 @@ export default function CooperativeSociety() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-xl px-md md:px-gutter max-w-container-max mx-auto text-center flex flex-col items-center gap-md">
+      <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto text-center flex flex-col items-center gap-md">
         <h2 className="font-headline-md text-headline-md text-on-surface">Ready to Join the Revolution?</h2>
         <div className="flex flex-col sm:flex-row gap-sm items-center justify-center">
           <GradientButton href="/contact">

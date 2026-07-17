@@ -46,7 +46,7 @@ export default function ContactUs() {
   return (
     <main className="flex-grow w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="pt-xl pb-lg px-md relative overflow-hidden min-h-[400px] flex items-center justify-center">
+      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-md relative overflow-hidden min-h-[400px] flex items-center justify-center">
         <div className="absolute inset-0 z-[-1] opacity-30">
           <Image 
             src="/images/solar_family_1783983635437.png"
@@ -65,7 +65,7 @@ export default function ContactUs() {
       </section>
 
       {/* Main Contact Section (Two Columns) */}
-      <section className="py-xl px-md max-w-container-max mx-auto">
+      <section className="py-20 md:py-28 px-md max-w-container-max mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl">
           {/* Left Column: Form */}
           <GlassCard hover={false} delay={0.1} className="p-lg relative z-10">
@@ -185,21 +185,59 @@ export default function ContactUs() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 md:py-28 px-md max-w-[800px] mx-auto">
+        <SectionHeading 
+          eyebrow="FAQ"
+          title="Frequently Asked Questions" 
+          subtitle="Quick answers to common questions about our cooperative."
+          centered
+        />
+        <div className="mt-8 space-y-4">
+          {[
+            {
+              q: "How long does the installation take?",
+              a: "Once your PM Surya Ghar application is approved, our team can complete the physical installation of a residential system in just 1 to 2 working days."
+            },
+            {
+              q: "How do I claim the government subsidy?",
+              a: "We handle the entire PM Surya Ghar Yojana subsidy process for you. From initial registration to final documentation, our team ensures the subsidy is credited directly to your bank account."
+            },
+            {
+              q: "What maintenance is required?",
+              a: "Solar panels require very little maintenance—usually just periodic cleaning with water. We provide a 25-year service guarantee, so if anything goes wrong, we've got you covered."
+            },
+            {
+              q: "Can I sell excess electricity back to the grid?",
+              a: "Yes! Through net metering, any excess power your system generates is fed back into the grid, which earns you credits on your electricity bill."
+            }
+          ].map((faq, idx) => (
+            <GlassCard key={idx} className="!p-6 bg-surface-container-lowest">
+              <h4 className="font-headline-sm text-on-surface mb-2 flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary">help</span>
+                {faq.q}
+              </h4>
+              <p className="font-body-md text-on-surface-variant pl-9">{faq.a}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
       {/* Service Areas */}
-      <section className="py-xl px-md bg-surface-container-low">
+      <section className="py-20 md:py-28 px-md bg-surface-container-low">
         <div className="max-w-container-max mx-auto text-center">
-          <SectionHeading title="Our Service Areas" centered={true} />
+          <SectionHeading eyebrow="WHERE WE WORK" title="Our Service Areas" centered={true} />
           <div className="flex flex-wrap justify-center gap-md">
             <GlassCard hover={false} delay={0.1} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-secondary-container">bolt</span>
+              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
               <span className="font-label-md text-label-md text-on-surface">MP Madhya Kshetra</span>
             </GlassCard>
             <GlassCard hover={false} delay={0.2} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-secondary-container">bolt</span>
+              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
               <span className="font-label-md text-label-md text-on-surface">MP Paschim Kshetra</span>
             </GlassCard>
             <GlassCard hover={false} delay={0.3} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-secondary-container">bolt</span>
+              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
               <span className="font-label-md text-label-md text-on-surface">MP Purva Kshetra</span>
             </GlassCard>
           </div>
@@ -207,9 +245,9 @@ export default function ContactUs() {
       </section>
 
       {/* Map Section */}
-      <section className="w-full relative bg-surface-dim py-xl">
+      <section className="w-full relative bg-surface-dim py-20 md:py-28">
         <div className="max-w-container-max mx-auto px-gutter text-center">
-          <SectionHeading title="Visit Us" subtitle="Drop by our offices to discuss your solar transition." centered={true} />
+          <SectionHeading eyebrow="OFFICES" title="Visit Us" subtitle="Drop by our offices to discuss your solar transition." centered={true} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-md mt-lg">
             <GlassCard hover={false} className="p-md text-center shadow-lg bg-surface flex flex-col items-center justify-center min-h-[200px]">
               <span className="material-symbols-outlined fill text-primary text-4xl mb-sm">map</span>

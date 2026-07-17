@@ -45,10 +45,10 @@ export default function SolarTraining() {
   return (
     <main className="w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center pt-xl pb-xl overflow-hidden">
+      <section className="relative min-h-[600px] flex items-center pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/solar_family_1783983635437.png"
+            src="/gallery/solarbrigade.jpeg"
             alt="Solar Training"
             fill
             className="object-cover"
@@ -58,20 +58,20 @@ export default function SolarTraining() {
         </div>
         <div className="max-w-container-max mx-auto px-md md:px-gutter w-full relative z-10 flex flex-col items-center text-center">
           <div className="flex flex-col items-center gap-sm animate-fade-in-up max-w-[800px]">
-            <span className="font-label-md text-label-md text-secondary-container uppercase tracking-wider font-bold bg-surface-container-low/50 px-4 py-1 rounded-full backdrop-blur-sm">Learn. Install. Grow.</span>
+            <span className="font-label-md text-label-md text-solar-orange uppercase tracking-wider font-bold bg-surface-container-low/50 px-4 py-1 rounded-full backdrop-blur-sm">Learn. Install. Grow.</span>
             <h1 className="font-display-lg-mobile md:font-display-lg text-primary leading-tight text-shadow-sm">5-Day Solar Business Practical Training</h1>
             <p className="font-body-lg text-on-surface-variant max-w-[672px] bg-surface/80 p-4 rounded-xl backdrop-blur-md">
               Build your career in the booming solar industry with India&apos;s First Solar Cooperative Society. Hands-on experience and expert mentorship await.
             </p>
             <div className="flex flex-wrap justify-center gap-xs mt-sm">
               <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-secondary-container text-sm">workspace_premium</span> Certificate of Participation
+                <span className="material-symbols-outlined fill text-solar-orange text-sm">workspace_premium</span> Certificate of Participation
               </span>
               <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-secondary-container text-sm">restaurant</span> Breakfast &amp; Lunch Included
+                <span className="material-symbols-outlined fill text-solar-orange text-sm">restaurant</span> Breakfast &amp; Lunch Included
               </span>
               <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-secondary-container text-sm">build</span> Live Projects
+                <span className="material-symbols-outlined fill text-solar-orange text-sm">build</span> Live Projects
               </span>
             </div>
             <div className="mt-md">
@@ -84,9 +84,9 @@ export default function SolarTraining() {
       </section>
 
       {/* Who Should Join */}
-      <section className="py-xl bg-surface-container-low px-md">
+      <section className="py-20 md:py-28 bg-surface-container-low px-md">
         <div className="max-w-container-max mx-auto px-gutter text-center">
-          <SectionHeading title="Who Should Join?" subtitle="Ideal for anyone looking to enter or accelerate their career in the renewable energy sector." />
+          <SectionHeading eyebrow="TARGET AUDIENCE" title="Who Should Join?" subtitle="Ideal for anyone looking to enter or accelerate their career in the renewable energy sector." />
           <div className="flex flex-wrap justify-center gap-sm mt-md">
             <GlassCard hover={false} delay={0.1} className="!rounded-full px-6 py-3 flex items-center gap-xs font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-default border border-outline-variant/30">
               <span className="material-symbols-outlined fill text-primary">school</span> Students
@@ -110,12 +110,103 @@ export default function SolarTraining() {
         </div>
       </section>
 
+      {/* Curriculum & Trainers */}
+      <section className="py-20 md:py-28 max-w-container-max mx-auto px-md md:px-gutter">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl">
+          {/* Detailed Curriculum */}
+          <div>
+            <SectionHeading 
+              eyebrow="SYLLABUS"
+              title="5-Day Intensive Curriculum" 
+              subtitle="From technical basics to business mastery."
+              centered={false}
+            />
+            <div className="mt-8 space-y-4">
+              {[
+                { day: "Day 1", title: "Solar Fundamentals", desc: "Understanding PV technology, inverters, and basic electrical concepts." },
+                { day: "Day 2", title: "System Design & Sizing", desc: "Load calculation, shadow analysis, and optimal panel placement." },
+                { day: "Day 3", title: "Government Policies", desc: "Deep dive into PM Surya Ghar Yojana, subsidies, and net-metering." },
+                { day: "Day 4", title: "Installation & Safety", desc: "Hands-on practical training with mounting structures and wiring." },
+                { day: "Day 5", title: "Business & Sales", desc: "How to find clients, pitch the cooperative model, and close deals." }
+              ].map((module, idx) => (
+                <div key={idx} className="flex gap-4 p-4 rounded-xl bg-surface hover:bg-surface-container-low transition-colors border border-outline-variant/20">
+                  <div className="w-16 h-16 rounded-lg bg-primary/10 flex flex-col items-center justify-center shrink-0">
+                    <span className="font-bold text-primary">{module.day}</span>
+                  </div>
+                  <div>
+                    <h4 className="font-headline-sm text-on-surface mb-1">{module.title}</h4>
+                    <p className="font-body-sm text-on-surface-variant">{module.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Trainers & Certification */}
+          <div className="space-y-xl">
+            {/* Trainers */}
+            <div>
+              <SectionHeading 
+                eyebrow="INSTRUCTORS"
+                title="Learn from Experts" 
+                subtitle="Industry veterans guiding your path."
+                centered={false}
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                <GlassCard className="!p-6 flex flex-col items-center text-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary">
+                    <Image src="/gallery/CEO.jpeg" alt="Himanshu Kushwah" width={96} height={96} className="object-cover w-full h-full" />
+                  </div>
+                  <h4 className="font-headline-sm text-on-surface">Himanshu Kushwah</h4>
+                  <p className="font-label-sm text-primary uppercase tracking-wider mb-2">CEO, Business Coach</p>
+                  <p className="font-body-sm text-on-surface-variant">Expert in cooperative models and solar entrepreneurship.</p>
+                </GlassCard>
+                <GlassCard className="!p-6 flex flex-col items-center text-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-solar-orange">
+                    <Image src="/images/solar_team_1783983625434.png" alt="Priya Sharma" width={96} height={96} className="object-cover w-full h-full" />
+                  </div>
+                  <h4 className="font-headline-sm text-on-surface">Priya Sharma</h4>
+                  <p className="font-label-sm text-solar-orange uppercase tracking-wider mb-2">Lead Engineer</p>
+                  <p className="font-body-sm text-on-surface-variant">Master of technical design and grid integration.</p>
+                </GlassCard>
+              </div>
+            </div>
+
+            {/* Certification Benefits */}
+            <GlassCard className="!p-8 bg-surface-container-lowest border-primary/30">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
+                <h3 className="font-headline-sm text-on-surface">Certification Benefits</h3>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-primary mt-1 text-sm">check_circle</span>
+                  <span className="font-body-md text-on-surface-variant">Authorized Solar Mitra ID Card</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-primary mt-1 text-sm">check_circle</span>
+                  <span className="font-body-md text-on-surface-variant">Eligibility to earn direct referral bonuses</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-primary mt-1 text-sm">check_circle</span>
+                  <span className="font-body-md text-on-surface-variant">Access to wholesale equipment pricing</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-primary mt-1 text-sm">check_circle</span>
+                  <span className="font-body-md text-on-surface-variant">Ongoing technical support for your projects</span>
+                </li>
+              </ul>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
       {/* Registration Form Section */}
-      <section id="register" className="py-xl max-w-container-max mx-auto px-md md:px-gutter">
+      <section id="register" className="py-20 md:py-28 max-w-container-max mx-auto px-md md:px-gutter">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-xl">
           <div className="flex flex-col justify-center">
-            <SectionHeading title="Secure Your Spot" centered={false} />
-            <div className="w-16 h-1 bg-secondary-container rounded-full -mt-lg mb-4"></div>
+            <SectionHeading eyebrow="ENROLL" title="Secure Your Spot" centered={false} />
+            <div className="w-16 h-1 bg-solar-orange rounded-full -mt-lg mb-4"></div>
             <p className="font-body-md text-on-surface-variant mb-md max-w-[448px]">
               Seats are limited for this intensive hands-on practical training. Register now to begin your journey in the solar industry.
             </p>
@@ -123,7 +214,7 @@ export default function SolarTraining() {
               <Image 
                 className="object-cover" 
                 alt="Education and Technical Training" 
-                src="/images/solar_team_1783983625434.png" 
+                src="/gallery/withbunchapeople.jpeg" 
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

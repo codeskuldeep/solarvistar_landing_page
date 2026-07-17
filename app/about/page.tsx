@@ -14,7 +14,7 @@ export default function AboutUs() {
   return (
     <main className="w-full overflow-hidden">
       {/* 1. HERO */}
-      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-xl flex flex-col items-center justify-center text-center mt-md">
+      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-20 md:py-28 flex flex-col items-center justify-center text-center mt-md">
         <div className="inline-flex items-center gap-xs px-sm py-xs rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm mb-md shadow-sm shadow-primary/5 animate-fade-in-up">
           <span className="material-symbols-outlined fill text-[16px]">eco</span>
           <span className="uppercase tracking-wider">About Us</span>
@@ -30,7 +30,7 @@ export default function AboutUs() {
       </section>
 
       {/* 2. STORY */}
-      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-xl relative">
+      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-primary-fixed-dim/20 rounded-[40px] -z-10 blur-3xl transform -translate-y-10 scale-95 opacity-50"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
           {/* Left: Image */}
@@ -38,7 +38,7 @@ export default function AboutUs() {
             <Image 
               alt="Solar Installation Team" 
               className="object-cover transition-transform duration-700 hover:scale-105" 
-              src="/images/solar_hero_1783983605510.png"
+              src="/gallery/installers.jpeg"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -57,6 +57,7 @@ export default function AboutUs() {
           {/* Right: Content */}
           <div className="flex flex-col justify-center space-y-md">
             <SectionHeading 
+              eyebrow="WHO WE ARE"
               title="Pioneering Cooperative Solar Energy" 
               centered={false} 
             />
@@ -86,13 +87,14 @@ export default function AboutUs() {
       </section>
 
       {/* 3. VISION & MISSION */}
-      <section className="w-full bg-surface-container-low py-xl mt-xl relative overflow-hidden">
+      <section className="w-full bg-surface-container-low py-20 md:py-28 mt-xl relative overflow-hidden">
         {/* Decorative blur blobs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary-fixed-dim/30 rounded-full blur-3xl translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-fixed-dim/30 rounded-full blur-3xl -translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
         
         <div className="max-w-container-max mx-auto px-gutter md:px-lg relative z-10">
           <SectionHeading 
+            eyebrow="VISION & MISSION"
             title="Our Guiding Principles" 
             subtitle="Driving the transition to renewable energy through cooperative strength."
           />
@@ -149,16 +151,16 @@ export default function AboutUs() {
       </section>
 
       {/* 4. CEO MESSAGE */}
-      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-xl my-xl">
+      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-20 md:py-28 my-xl">
         <GlassCard className="!rounded-[32px] !p-lg md:!p-xl relative overflow-hidden" hover={false}>
           {/* Large decorative quote */}
           <span className="material-symbols-outlined fill absolute top-md left-md text-[120px] text-secondary-container/10 -z-10 transform -rotate-12">format_quote</span>
           <div className="flex flex-col md:flex-row items-center gap-lg relative z-10">
             <div className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 rounded-full border-4 border-surface shadow-xl overflow-hidden relative">
               <Image 
-                alt="Representative placeholder for Himanshu Kushwah - CEO" 
+                alt="Himanshu Kushwah - CEO" 
                 className="object-cover" 
-                src="/images/solar_training_1783983645115.png"
+                src="/gallery/CEO.jpeg"
                 fill
                 sizes="(max-width: 768px) 192px, 256px"
               />
@@ -176,8 +178,51 @@ export default function AboutUs() {
         </GlassCard>
       </section>
 
+      {/* 4.1. IMPACT METRICS */}
+      <section className="w-full bg-surface py-20 md:py-28 border-y border-outline-variant/20">
+        <div className="max-w-container-max mx-auto px-gutter text-center">
+          <SectionHeading eyebrow="IMPACT" title="Our Impact by the Numbers" subtitle="Real change, measured in watts, rupees, and carbon reduced." centered />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+            {[
+              { label: "Installations", value: "500+", icon: "roofing" },
+              { label: "Members Savings", value: "₹2.5Cr", icon: "savings" },
+              { label: "CO2 Reduced", value: "1,200 Tonnes", icon: "co2" },
+              { label: "Districts Reached", value: "12", icon: "map" }
+            ].map((stat, idx) => (
+              <div key={idx} className="flex flex-col items-center p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/30 hover:border-primary/30 transition-colors">
+                <span className="material-symbols-outlined text-4xl text-primary mb-4">{stat.icon}</span>
+                <h4 className="text-4xl md:text-5xl font-display-lg font-bold text-on-surface mb-2">{stat.value}</h4>
+                <p className="font-label-md text-on-surface-variant uppercase tracking-wider">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4.2. OUR TEAM */}
+      <section className="w-full bg-surface-container-lowest py-20 md:py-28">
+        <div className="max-w-container-max mx-auto px-gutter">
+          <SectionHeading eyebrow="TEAM" title="Meet the Core Team" subtitle="The dedicated professionals driving India's cooperative solar revolution." centered />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {[
+              { name: "Himanshu Kushwah", role: "CEO & Founder", img: "/gallery/CEO.jpeg" },
+              { name: "Priya Sharma", role: "Head of Engineering", img: "/images/solar_family_1783983635437.png" },
+              { name: "Rahul Verma", role: "Community Outreach Lead", img: "/images/solar_team_1783983625434.png" }
+            ].map((member, idx) => (
+              <GlassCard key={idx} className="flex flex-col items-center text-center !p-8 group hover:-translate-y-2 transition-transform">
+                <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-surface shadow-md">
+                  <Image src={member.img} alt={member.name} width={128} height={128} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <h4 className="text-2xl font-display-lg font-bold text-on-surface mb-1">{member.name}</h4>
+                <p className="text-primary font-label-md uppercase tracking-wide">{member.role}</p>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 5. HIGHLIGHT BAND */}
-      <section className="w-full solar-gradient py-lg">
+      <section className="w-full solar-gradient py-20 md:py-28">
         <div className="max-w-container-max mx-auto px-gutter text-center">
           <h2 className="font-headline-md text-headline-md text-on-primary font-bold tracking-wide">
             Powering the Future, One Rooftop at a Time.
@@ -186,7 +231,7 @@ export default function AboutUs() {
       </section>
 
       {/* 6. CTA BAND */}
-      <section className="w-full bg-surface-container-highest py-xl">
+      <section className="w-full bg-surface-container-highest py-20 md:py-28">
         <div className="max-w-container-max mx-auto px-gutter flex flex-col items-center justify-center text-center space-y-md">
           <h2 className="font-headline-sm text-headline-sm text-on-surface">Ready to transition to clean energy?</h2>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-[576px]">

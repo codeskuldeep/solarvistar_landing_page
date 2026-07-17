@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       
       {/* Logos / Social Proof */}
-      <section className="py-10 border-y border-outline-variant/20 bg-surface">
+      <section className="py-12 border-y border-outline-variant/20 bg-surface">
         <div className="max-w-container-max mx-auto px-gutter overflow-hidden flex flex-col items-center">
           <p className="text-sm font-label-md text-on-surface-variant uppercase tracking-widest mb-6 font-bold">Trusted By & Associated With</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
@@ -29,7 +29,7 @@ export default function Home() {
               <span className="font-display-lg text-xl font-bold text-on-surface">MNRE</span>
             </div>
             <div className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-              <span className="material-symbols-outlined text-3xl text-secondary-container fill">verified</span>
+              <span className="material-symbols-outlined text-3xl text-solar-orange fill">verified</span>
               <span className="font-display-lg text-xl font-bold text-on-surface">Tier-1 Panels</span>
             </div>
             <div className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
@@ -41,8 +41,9 @@ export default function Home() {
       </section>
 
       {/* The Bento Grid Features */}
-      <section className="py-16 md:py-20 max-w-container-max mx-auto px-gutter">
+      <section className="py-20 md:py-28 max-w-container-max mx-auto px-gutter">
         <SectionHeading 
+          eyebrow="WHY SOLAR VISTAR"
           title="Everything you need. Nothing you don't." 
           subtitle="We've completely re-engineered the solar installation process. Premium hardware, cooperative profit-sharing, and zero middlemen." 
           centered 
@@ -53,7 +54,7 @@ export default function Home() {
           {/* Main Large Card */}
           <GlassCard className="!p-0 overflow-hidden md:col-span-2 md:row-span-2 min-h-[400px] md:min-h-[700px] relative group !rounded-[2rem] !border-none">
             <Image 
-              src="/images/solar_team_1783983625434.png"
+              src="/gallery/installers.jpeg"
               alt="Engineers installing solar panels"
               fill
               sizes="(max-width: 768px) 100vw, 66vw"
@@ -94,7 +95,7 @@ export default function Home() {
           {/* Bottom Right Card */}
           <GlassCard className="!p-0 overflow-hidden !rounded-[2rem] relative group hover:-translate-y-1 transition-transform !border-none">
             <Image 
-              src="/images/solar_farm_1783983615127.png"
+              src="/gallery/fieldvi.jpeg"
               alt="Solar panels close up"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -117,9 +118,10 @@ export default function Home() {
       </section>
 
       {/* How It Works Timeline */}
-      <section className="py-16 md:py-20 bg-surface-container relative overflow-hidden border-y border-outline-variant/20">
+      <section className="py-20 md:py-28 bg-surface-container relative overflow-hidden border-y border-outline-variant/20">
         <div className="max-w-container-max mx-auto px-gutter relative z-10">
           <SectionHeading 
+            eyebrow="HOW IT WORKS"
             title="The simplest switch you'll ever make." 
             subtitle="We've reduced the solar transition from a 3-month headache to a seamless 4-step process." 
             centered 
@@ -149,11 +151,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 md:py-28 bg-surface">
+        <div className="max-w-container-max mx-auto px-gutter">
+          <SectionHeading 
+            eyebrow="TESTIMONIALS"
+            title="Voices of our Cooperative" 
+            subtitle="Don't just take our word for it. Hear from the members who have already made the smart switch to solar with us."
+            centered
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 md:mt-16">
+            {[
+              {
+                name: "Rajesh Kumar",
+                location: "Indore",
+                quote: "The cooperative model is a game-changer. Not only did I get my 3kW system installed in a single day, but the total cost after subsidy was lower than any private vendor quoted.",
+                rating: 5
+              },
+              {
+                name: "Anjali Sharma",
+                location: "Bhopal",
+                quote: "I was worried about the PM Surya Ghar paperwork, but the Solar Vistar team handled everything. From application to net metering, the process was completely transparent and hassle-free.",
+                rating: 5
+              },
+              {
+                name: "Vikram Singh",
+                location: "Ujjain",
+                quote: "Being a part of a cooperative gives me peace of mind. I know I'm getting Tier-1 equipment at wholesale rates, and the 25-year service guarantee means zero headaches.",
+                rating: 5
+              }
+            ].map((testimonial, idx) => (
+              <GlassCard key={idx} className="flex flex-col justify-between !rounded-[2rem] bg-surface-container-low border-outline-variant/30 hover:-translate-y-1 transition-transform h-full">
+                <div>
+                  <div className="flex text-solar-orange mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <span key={i} className="material-symbols-outlined fill text-xl">star</span>
+                    ))}
+                  </div>
+                  <p className="font-body-lg text-on-surface-variant italic mb-6">"{testimonial.quote}"</p>
+                </div>
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-headline-sm text-on-surface text-base">{testimonial.name}</h4>
+                    <p className="font-label-sm text-on-surface-variant uppercase tracking-wider">{testimonial.location}</p>
+                  </div>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Massive CTA Section */}
-      <section className="py-20 md:py-24 relative overflow-hidden bg-primary">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-primary">
         <Image 
-          src="/images/solar_family_1783983635437.png"
-          alt="Happy family outside their home"
+          src="/gallery/withbunchapeople.jpeg"
+          alt="Solar Vistar Team and Community"
           fill
           sizes="100vw"
           className="object-cover opacity-50 mix-blend-overlay"
