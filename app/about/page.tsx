@@ -206,8 +206,8 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             {[
               { name: "Himanshu Kushwah", role: "CEO & Founder", img: "/gallery/CEO.jpeg" },
-              { name: "Priya Sharma", role: "Head of Engineering", img: "/images/solar_family_1783983635437.png" },
-              { name: "Rahul Verma", role: "Community Outreach Lead", img: "/images/solar_team_1783983625434.png" }
+              { name: "Priya Sharma", role: "Head of Engineering", img: "/gallery/idk.jpeg" },
+              { name: "Rahul Verma", role: "Community Outreach Lead", img: "/gallery/withsomeone.jpeg" }
             ].map((member, idx) => (
               <GlassCard key={idx} className="flex flex-col items-center text-center !p-8 group hover:-translate-y-2 transition-transform">
                 <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-surface shadow-md">

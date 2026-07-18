@@ -163,7 +163,7 @@ export default function SolarTraining() {
                 </GlassCard>
                 <GlassCard className="!p-6 flex flex-col items-center text-center">
                   <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-solar-orange">
-                    <Image src="/images/solar_team_1783983625434.png" alt="Priya Sharma" width={96} height={96} className="object-cover w-full h-full" />
+                    <Image src="/gallery/idk.jpeg" alt="Priya Sharma" width={96} height={96} className="object-cover w-full h-full" />
                   </div>
                   <h4 className="font-headline-sm text-on-surface">Priya Sharma</h4>
                   <p className="font-label-sm text-solar-orange uppercase tracking-wider mb-2">Lead Engineer</p>

@@ -46,7 +46,7 @@ export default function PMSuryaGhar() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Solar panels at sunset" 
-                src="/images/solar_training_1783983645115.png" 
+                src="/gallery/solarbrigade.jpeg" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
@@ -75,7 +75,7 @@ export default function PMSuryaGhar() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Modern residential rooftop with solar panels" 
-                src="/images/solar_team_1783983625434.png"
+                src="/gallery/fieldvi.jpeg"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
               />

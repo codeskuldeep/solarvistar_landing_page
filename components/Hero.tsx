@@ -91,7 +91,7 @@ export default function Hero() {
           <Image 
             className="object-cover transition-transform duration-700 hover:scale-105" 
             alt="Beautiful solar panels on a modern home roof at sunset"
-            src="/images/solar_team_1783983625434.png" 
+            src="/gallery/fieldvi.jpeg" 
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority

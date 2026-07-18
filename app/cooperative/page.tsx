@@ -33,7 +33,7 @@ export default function CooperativeSociety() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Community collaboration" 
-                src="/images/solar_hero_1783983605510.png" 
+                src="/gallery/withbunchapeople.jpeg" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

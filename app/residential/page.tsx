@@ -42,7 +42,7 @@ export default function ResidentialSolar() {
                 <Image 
                   className="object-cover"
                   alt="Residential solar roof"
-                  src="/images/solar_farm_1783983615127.png"
+                  src="/gallery/installers.jpeg"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority

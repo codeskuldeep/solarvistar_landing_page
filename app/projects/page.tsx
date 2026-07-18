@@ -30,9 +30,9 @@ export default function ProjectsGallery() {
   // Fallback to existing images if the folder is empty
   if (images.length === 0) {
     images = [
-      "/images/solar_farm_1783983615127.png",
-      "/images/solar_team_1783983625434.png",
-      "/images/solar_family_1783983635437.png"
+      "/gallery/fieldvi.jpeg",
+      "/gallery/installers.jpeg",
+      "/gallery/solarbrigade.jpeg"
     ];
   }
 

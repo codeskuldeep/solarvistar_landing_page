@@ -49,7 +49,7 @@ export default function ContactUs() {
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-md relative overflow-hidden min-h-[400px] flex items-center justify-center">
         <div className="absolute inset-0 z-[-1] opacity-30">
           <Image 
-            src="/images/solar_family_1783983635437.png"
+            src="/gallery/withbunchapeople.jpeg"
             alt="Office setting"
             fill
             className="object-cover"

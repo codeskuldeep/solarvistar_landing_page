@@ -40,7 +40,7 @@ export default function YoungEntrepreneurs() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Young professionals collaborating" 
-                src="/images/solar_hero_1783983605510.png" 
+                src="/gallery/whitetshirtguys.jpeg" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
@@ -58,7 +58,7 @@ export default function YoungEntrepreneurs() {
               <Image 
                 className="object-cover transition-transform duration-700 hover:scale-105" 
                 alt="Mentorship in Solar" 
-                src="/images/solar_team_1783983625434.png" 
+                src="/gallery/withbunchapeople.jpeg" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
@@ -195,7 +195,7 @@ export default function YoungEntrepreneurs() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
             <div className="flex flex-col md:flex-row gap-6 items-center bg-surface-container-low p-6 rounded-3xl border border-outline-variant/30">
               <div className="w-32 h-32 shrink-0 rounded-full overflow-hidden border-4 border-surface shadow-md">
-                <Image src="/images/solar_team_1783983625434.png" alt="Ravi Sharma" width={128} height={128} className="object-cover w-full h-full" />
+                <Image src="/gallery/idk.jpeg" alt="Ravi Sharma" width={128} height={128} className="object-cover w-full h-full" />
               </div>
               <div>
                 <h4 className="font-headline-sm text-on-surface mb-1">Ravi Sharma</h4>
@@ -206,7 +206,7 @@ export default function YoungEntrepreneurs() {
             
             <div className="flex flex-col md:flex-row gap-6 items-center bg-surface-container-low p-6 rounded-3xl border border-outline-variant/30">
               <div className="w-32 h-32 shrink-0 rounded-full overflow-hidden border-4 border-surface shadow-md">
-                <Image src="/images/solar_family_1783983635437.png" alt="Pooja Desai" width={128} height={128} className="object-cover w-full h-full" />
+                <Image src="/gallery/idk.jpeg" alt="Pooja Desai" width={128} height={128} className="object-cover w-full h-full" />
               </div>
               <div>
                 <h4 className="font-headline-sm text-on-surface mb-1">Pooja Desai</h4>
