@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Residential Solar | Solar Vistar",
@@ -13,55 +13,21 @@ export default function ResidentialSolar() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="absolute inset-0 bg-surface-container-low -z-10"></div>
-        {/* Decorative gradient orb */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary-container/10 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3"></div>
-        
-        <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-xl items-center">
-          <div className="space-y-sm animate-fade-in-up">
-            <span className="inline-block px-sm py-xs bg-primary-container/10 text-primary-container rounded-full font-label-sm text-label-sm uppercase tracking-wider">
-              Our Services
-            </span>
-            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">
-              Residential <br /> <span className="text-solar-gradient">Rooftop Solar</span>
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[512px] pb-sm">
-              Complete residential rooftop solar solutions designed for Indian homes. Transform your unused roof space into a clean energy powerhouse.
-            </p>
-            <GradientButton href="/contact" className="flex items-center gap-xs">
-              Get Free Quote
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </GradientButton>
-          </div>
-          
-          <div className="relative animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <div className="glass-card border border-outline-variant/30 rounded-[2rem] p-xs relative z-10">
-              <div className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden relative">
-                <Image 
-                  className="object-cover"
-                  alt="Residential solar roof"
-                  src="/gallery/installers.jpeg"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-md -left-md glass-card border border-outline-variant/30 px-sm py-sm rounded-xl flex items-center gap-xs shadow-lg">
-                <div className="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined fill text-secondary-container">solar_power</span>
-                </div>
-                <div>
-                  <div className="font-label-md text-label-md text-on-surface">Govt. Approved</div>
-                  <div className="font-label-sm text-label-sm text-on-surface-variant">Subsidy Available</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Our Services"
+        icon="solar_power"
+        title={<>Residential <span className="text-solar-gradient">Rooftop Solar</span></>}
+        subtitle="Complete residential rooftop solar solutions designed for Indian homes. Transform your unused roof space into a clean energy powerhouse."
+        image="/gallery/installers.jpeg"
+        imageAlt="Residential solar roof"
+        chips={[{ icon: "solar_power", label: "Govt. Approved" }, { icon: "payments", label: "Subsidy Available" }]}
+        cta={
+          <GradientButton href="/contact" className="flex items-center gap-xs">
+            Get Free Quote
+            <span className="material-symbols-outlined">arrow_forward</span>
+          </GradientButton>
+        }
+      />
 
       {/* System Sizing Guide */}
       <section className="py-20 md:py-28 px-gutter max-w-container-max mx-auto">
@@ -275,7 +241,7 @@ export default function ResidentialSolar() {
             <span className="material-symbols-outlined text-4xl mb-4">account_balance</span>
             <h3 className="font-headline-md font-bold mb-4">Zero Upfront Cost Options</h3>
             <p className="font-body-lg text-on-primary/90 mb-8">
-              We've partnered with leading national banks to provide easy EMI options. You can pay for your solar system using the money you save on your electricity bill!
+              We&apos;ve partnered with leading national banks to provide easy EMI options. You can pay for your solar system using the money you save on your electricity bill!
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">

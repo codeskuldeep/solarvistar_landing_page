@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-md">
           <Link
             href="/"
-            className={`font-label-md text-label-md font-bold transition-colors ${isActive('/') ? 'text-solar-orange' : 'text-primary hover:text-solar-orange'}`}
+            className={`font-label-md text-label-md transition-colors ${isActive('/') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}
           >
             Home
           </Link>
@@ -46,13 +46,14 @@ export default function Navbar() {
           <div className="relative group">
             <Link
               href="/about"
-              className={`font-label-md text-label-md transition-colors hover:scale-102 duration-200 py-4 flex items-center gap-1 ${isGroupActive(['/about', '/awards']) ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}
+              className={`font-label-md text-label-md transition-colors hover:scale-102 duration-200 py-4 flex items-center gap-1 ${isGroupActive(['/about', '/awards', '/projects']) ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}
             >
               About Us <span className="material-symbols-outlined text-[18px]">expand_more</span>
             </Link>
-            <div className="absolute top-full left-0 mt-0 w-48 bg-surface border border-outline-variant/30 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col overflow-hidden">
+            <div className="absolute top-full left-0 mt-0 w-56 bg-surface border border-outline-variant/30 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col overflow-hidden">
               <Link href="/about" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">Our Vision</Link>
               <Link href="/awards" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">Awards & Achievements</Link>
+              <Link href="/projects" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">Projects & Gallery</Link>
             </div>
           </div>
 
@@ -60,14 +61,13 @@ export default function Navbar() {
           <div className="relative group">
             <Link
               href="/residential"
-              className={`font-label-md text-label-md transition-colors hover:scale-102 duration-200 py-4 flex items-center gap-1 ${isGroupActive(['/residential', '/surya-ghar', '/projects']) ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}
+              className={`font-label-md text-label-md transition-colors hover:scale-102 duration-200 py-4 flex items-center gap-1 ${isGroupActive(['/residential', '/surya-ghar']) ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}
             >
               Services <span className="material-symbols-outlined text-[18px]">expand_more</span>
             </Link>
             <div className="absolute top-full left-0 mt-0 w-56 bg-surface border border-outline-variant/30 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col overflow-hidden">
               <Link href="/residential" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">Residential Solar</Link>
               <Link href="/surya-ghar" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">PM Surya Ghar Yojana</Link>
-              <Link href="/projects" className="px-4 py-3 text-sm text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors">Projects & Gallery</Link>
             </div>
           </div>
 
@@ -129,17 +129,17 @@ export default function Navbar() {
             className="lg:hidden absolute top-[72px] left-0 w-full bg-surface border-b border-outline-variant/30 shadow-lg overflow-hidden flex flex-col"
           >
             <div className="p-4 max-h-[calc(100vh-72px)] overflow-y-auto flex flex-col gap-2">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`font-label-md text-label-md font-bold py-2 border-b border-outline-variant/20 ${isActive('/') ? 'text-solar-orange' : 'text-primary'}`}>Home</Link>
-              
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`font-label-md text-label-md py-2 border-b border-outline-variant/20 ${isActive('/') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Home</Link>
+
               <span className="font-label-md text-label-md text-outline mt-2 uppercase tracking-wider text-[10px]">About</span>
               <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/about') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Our Vision</Link>
-              <Link href="/awards" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm border-b border-outline-variant/20 ${isActive('/awards') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Awards & Achievements</Link>
-              
+              <Link href="/awards" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/awards') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Awards & Achievements</Link>
+              <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm border-b border-outline-variant/20 ${isActive('/projects') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Projects & Gallery</Link>
+
               <span className="font-label-md text-label-md text-outline mt-2 uppercase tracking-wider text-[10px]">Services</span>
               <Link href="/residential" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/residential') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Residential Solar</Link>
-              <Link href="/surya-ghar" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/surya-ghar') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>PM Surya Ghar Yojana</Link>
-              <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm border-b border-outline-variant/20 ${isActive('/projects') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Projects & Gallery</Link>
-  
+              <Link href="/surya-ghar" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm border-b border-outline-variant/20 ${isActive('/surya-ghar') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>PM Surya Ghar Yojana</Link>
+
               <span className="font-label-md text-label-md text-outline mt-2 uppercase tracking-wider text-[10px]">Community</span>
               <Link href="/cooperative" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/cooperative') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Cooperative Society Model</Link>
               <Link href="/entrepreneurs" onClick={() => setIsMobileMenuOpen(false)} className={`pl-4 py-2 text-sm ${isActive('/entrepreneurs') ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary'}`}>Young Entrepreneurs</Link>

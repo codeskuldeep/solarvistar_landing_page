@@ -5,29 +5,34 @@ import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
 
 export default function SolarTraining() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showFallback, setShowFallback] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     setIsLoading(true);
     setError("");
+    setShowFallback(false);
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:5001/api/website/training", {
+      const response = await fetch(`${API_BASE}/api/website/training`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(result.message || "Failed to submit registration");
@@ -36,8 +41,13 @@ export default function SolarTraining() {
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 5000);
       form.reset();
-    } catch (err: any) {
-      setError(err.message || "An error occurred while submitting.");
+    } catch (err) {
+      if (err instanceof TypeError) {
+        setError("We couldn't reach our server right now. Please contact us directly instead — we respond fast on WhatsApp.");
+        setShowFallback(true);
+      } else {
+        setError(err instanceof Error ? err.message : "An error occurred while submitting.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -45,43 +55,24 @@ export default function SolarTraining() {
   return (
     <main className="w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="/gallery/solarbrigade.jpeg"
-            alt="Solar Training"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/90 via-surface/70 to-surface"></div>
-        </div>
-        <div className="max-w-container-max mx-auto px-md md:px-gutter w-full relative z-10 flex flex-col items-center text-center">
-          <div className="flex flex-col items-center gap-sm animate-fade-in-up max-w-[800px]">
-            <span className="font-label-md text-label-md text-solar-orange uppercase tracking-wider font-bold bg-surface-container-low/50 px-4 py-1 rounded-full backdrop-blur-sm">Learn. Install. Grow.</span>
-            <h1 className="font-display-lg-mobile md:font-display-lg text-primary leading-tight text-shadow-sm">5-Day Solar Business Practical Training</h1>
-            <p className="font-body-lg text-on-surface-variant max-w-[672px] bg-surface/80 p-4 rounded-xl backdrop-blur-md">
-              Build your career in the booming solar industry with India&apos;s First Solar Cooperative Society. Hands-on experience and expert mentorship await.
-            </p>
-            <div className="flex flex-wrap justify-center gap-xs mt-sm">
-              <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-solar-orange text-sm">workspace_premium</span> Certificate of Participation
-              </span>
-              <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-solar-orange text-sm">restaurant</span> Breakfast &amp; Lunch Included
-              </span>
-              <span className="glass-card border border-outline-variant/30 px-4 py-2 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-xs shadow-sm bg-surface/90">
-                <span className="material-symbols-outlined fill text-solar-orange text-sm">build</span> Live Projects
-              </span>
-            </div>
-            <div className="mt-md">
-              <GradientButton href="#register" className="flex items-center gap-xs text-lg px-8 py-3 shadow-lg hover:scale-105">
-                Register for Training <span className="material-symbols-outlined">arrow_forward</span>
-              </GradientButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Learn. Install. Grow."
+        icon="school"
+        title={<>5-Day Solar Business <span className="text-solar-gradient">Practical Training</span></>}
+        subtitle="Build your career in the booming solar industry with India's First Solar Cooperative Society. Hands-on experience and expert mentorship await."
+        image="/gallery/withsomeone.jpeg"
+        imageAlt="Solar Practical Training"
+        chips={[
+          { icon: "workspace_premium", label: "Certificate of Participation" },
+          { icon: "restaurant", label: "Breakfast & Lunch Included" },
+          { icon: "build", label: "Live Projects" },
+        ]}
+        cta={
+          <GradientButton href="#register" className="flex items-center gap-xs text-lg px-8 py-3 shadow-lg hover:scale-105">
+            Register for Training <span className="material-symbols-outlined">arrow_forward</span>
+          </GradientButton>
+        }
+      />
 
       {/* Who Should Join */}
       <section className="py-20 md:py-28 bg-surface-container-low px-md">
@@ -258,7 +249,19 @@ export default function SolarTraining() {
                 <textarea name="message" className="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Any questions?" rows={3}></textarea>
               </div>
               {error && (
-                <div className="text-error text-sm">{error}</div>
+                <div className="text-error text-sm flex flex-col gap-sm">
+                  <p>{error}</p>
+                  {showFallback && (
+                    <div className="flex flex-wrap gap-sm">
+                      <a href="tel:+919303127775" className="inline-flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+                        <span className="material-symbols-outlined text-[18px]">call</span> Call 9303127775
+                      </a>
+                      <a href="https://wa.me/919303127775" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+                        <span className="material-symbols-outlined text-[18px]">chat</span> WhatsApp Us
+                      </a>
+                    </div>
+                  )}
+                </div>
               )}
               <div className="flex flex-col sm:flex-row gap-sm mt-md">
                 <GradientButton type="submit" className="flex-1 text-center font-bold !w-full disabled:opacity-70" disabled={isLoading}>

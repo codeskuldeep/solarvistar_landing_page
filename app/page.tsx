@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Hero from "../components/Hero";
 import GlassCard from "../components/ui/GlassCard";
 import SectionHeading from "../components/ui/SectionHeading";
@@ -108,12 +109,49 @@ export default function Home() {
               <div>
                 <h3 className="text-2xl font-display-lg text-white font-bold mb-2">25-Year Warranty</h3>
                 <p className="text-white/80 font-body-md">
-                  Zero maintenance costs. If it breaks, we fix it. It's that simple.
+                  Zero maintenance costs. If it breaks, we fix it. It&apos;s that simple.
                 </p>
               </div>
             </div>
           </GlassCard>
 
+        </div>
+      </section>
+
+      {/* At a Glance: Services Quick Links */}
+      <section className="py-20 md:py-28 bg-surface-container-low border-y border-outline-variant/20">
+        <div className="max-w-container-max mx-auto px-gutter">
+          <SectionHeading
+            eyebrow="AT A GLANCE"
+            title="Everything We Offer, In One Place"
+            subtitle="A quick look at every program under the Solar Vistar cooperative — tap any card to explore."
+            centered
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {[
+              { title: "Residential Solar", desc: "Rooftop systems sized for your home, from 1kW to 5kW+.", icon: "home", href: "/residential" },
+              { title: "PM Surya Ghar Yojana", desc: "Up to ₹78,000 in government subsidy, fully handled for you.", icon: "account_balance", href: "/surya-ghar" },
+              { title: "Cooperative Membership", desc: "Wholesale pricing and a real stake in the society, not just a purchase.", icon: "groups", href: "/cooperative" },
+              { title: "Young Entrepreneurs", desc: "Earn commissions and build a team as a certified Solar Mitra.", icon: "trending_up", href: "/entrepreneurs" },
+              { title: "Practical Training", desc: "A 5-day hands-on program covering installation to sales.", icon: "school", href: "/training" },
+              { title: "Projects & Gallery", desc: "Real installations and results from members across MP.", icon: "photo_library", href: "/projects" },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="block h-full">
+                <GlassCard className="!p-6 h-full flex items-start gap-4 group cursor-pointer">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                    <span className="material-symbols-outlined">{item.icon}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-headline-sm text-on-surface text-lg mb-1 flex items-center justify-between gap-2">
+                      {item.title}
+                      <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </h3>
+                    <p className="font-body-md text-sm text-on-surface-variant">{item.desc}</p>
+                  </div>
+                </GlassCard>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -189,7 +227,7 @@ export default function Home() {
                       <span key={i} className="material-symbols-outlined fill text-xl">star</span>
                     ))}
                   </div>
-                  <p className="font-body-lg text-on-surface-variant italic mb-6">"{testimonial.quote}"</p>
+                  <p className="font-body-lg text-on-surface-variant italic mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
                 </div>
                 <div className="flex items-center gap-4 mt-auto">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">

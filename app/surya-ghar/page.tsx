@@ -3,6 +3,7 @@ import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "PM Surya Ghar Yojana | Solar Vistar",
@@ -13,59 +14,21 @@ export default function PMSuryaGhar() {
   return (
     <main className="flex-grow overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden min-h-[600px] flex items-center">
-        {/* Background Decorative Elements */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-secondary-fixed opacity-30 blur-3xl mix-blend-multiply"></div>
-          <div className="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full bg-primary-fixed opacity-40 blur-3xl mix-blend-multiply"></div>
-        </div>
-        
-        <div className="max-w-container-max mx-auto px-gutter w-full relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
-            <div className="flex flex-col gap-sm animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-outline-variant w-fit mb-4">
-                <span className="material-symbols-outlined text-solar-orange text-sm">verified</span>
-                <span className="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">Government of India Scheme</span>
-              </div>
-              <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-2">
-                PM Surya Ghar <br />
-                <span className="text-solar-gradient">Muft Yojana</span>
-              </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 max-w-[512px]">
-                Empowering Indian households with clean energy. Install rooftop solar panels, significantly reduce your electricity bills, and benefit from substantial government subsidies designed to make renewable energy accessible to all.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <GradientButton href="/contact" className="flex items-center gap-2">
-                  Check Your Subsidy
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </GradientButton>
-              </div>
-            </div>
-            
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              <Image 
-                className="object-cover transition-transform duration-700 hover:scale-105" 
-                alt="Solar panels at sunset" 
-                src="/gallery/solarbrigade.jpeg" 
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-              {/* Glass overlay for premium feel */}
-              <div className="absolute inset-0 rounded-2xl border border-white/30 pointer-events-none"></div>
-              <div className="absolute bottom-4 left-4 right-4 glass-card border border-outline-variant/30 p-4 rounded-xl flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
-                  <span className="material-symbols-outlined fill">payments</span>
-                </div>
-                <div>
-                  <p className="font-label-sm text-label-sm text-on-surface-variant">Max Subsidy Available</p>
-                  <p className="font-headline-sm text-headline-sm text-primary font-bold">₹78,000</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Government of India Scheme"
+        icon="verified"
+        title={<>PM Surya Ghar <span className="text-solar-gradient">Muft Yojana</span></>}
+        subtitle="Empowering Indian households with clean energy. Install rooftop solar panels, significantly reduce your electricity bills, and benefit from substantial government subsidies designed to make renewable energy accessible to all."
+        image="/gallery/withCM.jpeg"
+        imageAlt="Solar panels at sunset"
+        stats={[{ value: "₹78,000", label: "Max Subsidy Available" }]}
+        cta={
+          <GradientButton href="/contact" className="flex items-center gap-2">
+            Check Your Subsidy
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </GradientButton>
+        }
+      />
 
       {/* Overview Section */}
       <section className="py-20 md:py-28 bg-surface-container-lowest">
@@ -132,7 +95,7 @@ export default function PMSuryaGhar() {
                   <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
                   <div>
                     <span className="font-bold text-on-surface block">Valid Electricity Connection</span>
-                    <span className="text-sm text-on-surface-variant">Must have an active electricity connection in the applicant's name.</span>
+                    <span className="text-sm text-on-surface-variant">Must have an active electricity connection in the applicant&apos;s name.</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -290,48 +253,23 @@ export default function PMSuryaGhar() {
             <div>
               <SectionHeading eyebrow="ADVANTAGES" title="Long-Term Benefits" centered={false} />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-secondary-container mt-1">trending_down</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Lower Electricity Bills</p>
+                {[
+                  { icon: "trending_down", color: "text-secondary-container", title: "Lower Electricity Bills", desc: "Offset most or all of your monthly consumption from day one." },
+                  { icon: "account_balance", color: "text-primary", title: "Government Subsidy", desc: "Up to ₹78,000 credited directly to your bank account." },
+                  { icon: "eco", color: "text-secondary-container", title: "Clean Renewable Energy", desc: "Cut your household's carbon footprint with every unit generated." },
+                  { icon: "real_estate_agent", color: "text-primary", title: "Increased Property Value", desc: "A commissioned solar system adds resale appeal to your home." },
+                  { icon: "savings", color: "text-secondary-container", title: "Long-Term Savings", desc: "System pays for itself in ~2.5 years, then powers your home free." },
+                  { icon: "build", color: "text-primary", title: "Low Maintenance", desc: "Just periodic cleaning — backed by our 25-year service guarantee." },
+                  { icon: "wb_sunny", color: "text-secondary-container", title: "Energy Independence", desc: "Less dependence on grid tariffs and outages, more control over your bill.", span: true },
+                ].map((b) => (
+                  <div key={b.title} className={`flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors ${b.span ? "sm:col-span-2" : ""}`}>
+                    <span className={`material-symbols-outlined mt-1 ${b.color}`}>{b.icon}</span>
+                    <div>
+                      <p className="font-label-md text-label-md text-on-background font-bold">{b.title}</p>
+                      <p className="font-body-sm text-sm text-on-surface-variant mt-0.5">{b.desc}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-primary mt-1">account_balance</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Government Subsidy</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-secondary-container mt-1">eco</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Clean Renewable Energy</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-primary mt-1">real_estate_agent</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Increased Property Value</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-secondary-container mt-1">savings</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Long-Term Savings</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
-                  <span className="material-symbols-outlined text-primary mt-1">build</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Low Maintenance</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors sm:col-span-2">
-                  <span className="material-symbols-outlined text-secondary-container mt-1">wb_sunny</span>
-                  <div>
-                    <p className="font-label-md text-label-md text-on-background font-bold">Energy Independence</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -425,7 +363,7 @@ export default function PMSuryaGhar() {
                 <span className="material-symbols-outlined">cancel</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Myth</span>
               </div>
-              <p className="font-headline-sm text-on-surface mb-6">"The subsidy takes years to process."</p>
+              <p className="font-headline-sm text-on-surface mb-6">&ldquo;The subsidy takes years to process.&rdquo;</p>
               <div className="flex items-center gap-2 text-primary mb-2 border-t border-outline-variant/30 pt-4">
                 <span className="material-symbols-outlined">check_circle</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Fact</span>
@@ -438,7 +376,7 @@ export default function PMSuryaGhar() {
                 <span className="material-symbols-outlined">cancel</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Myth</span>
               </div>
-              <p className="font-headline-sm text-on-surface mb-6">"I have to pay the vendor the full amount first."</p>
+              <p className="font-headline-sm text-on-surface mb-6">&ldquo;I have to pay the vendor the full amount first.&rdquo;</p>
               <div className="flex items-center gap-2 text-primary mb-2 border-t border-outline-variant/30 pt-4">
                 <span className="material-symbols-outlined">check_circle</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Fact</span>
@@ -451,7 +389,7 @@ export default function PMSuryaGhar() {
                 <span className="material-symbols-outlined">cancel</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Myth</span>
               </div>
-              <p className="font-headline-sm text-on-surface mb-6">"I can claim subsidy on any solar panel."</p>
+              <p className="font-headline-sm text-on-surface mb-6">&ldquo;I can claim subsidy on any solar panel.&rdquo;</p>
               <div className="flex items-center gap-2 text-primary mb-2 border-t border-outline-variant/30 pt-4">
                 <span className="material-symbols-outlined">check_circle</span>
                 <span className="font-bold text-sm uppercase tracking-wider">Fact</span>

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
+import GalleryGrid from "../../components/ui/GalleryGrid";
+import fs from "fs";
+import path from "path";
 
 export const metadata: Metadata = {
   title: "About Us | Solar Vistar",
@@ -11,23 +14,35 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUs() {
+  // Read a preview slice of images from public/gallery for the Gallery teaser
+  const galleryPath = path.join(process.cwd(), "public", "gallery");
+  let galleryImages: string[] = [];
+  try {
+    if (fs.existsSync(galleryPath)) {
+      const files = fs.readdirSync(galleryPath);
+      galleryImages = files
+        .filter((file) => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .map((file) => `/gallery/${file}`)
+        .slice(0, 6);
+    }
+  } catch (error) {
+    console.error("Error reading gallery directory:", error);
+  }
+  if (galleryImages.length === 0) {
+    galleryImages = ["/gallery/fieldvi.jpeg", "/gallery/installers.jpeg", "/gallery/solarbrigade.jpeg"];
+  }
+
   return (
     <main className="w-full overflow-hidden">
       {/* 1. HERO */}
-      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-20 md:py-28 flex flex-col items-center justify-center text-center mt-md">
-        <div className="inline-flex items-center gap-xs px-sm py-xs rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm mb-md shadow-sm shadow-primary/5 animate-fade-in-up">
-          <span className="material-symbols-outlined fill text-[16px]">eco</span>
-          <span className="uppercase tracking-wider">About Us</span>
-        </div>
-        <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface max-w-[896px] mb-sm leading-tight animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-          India&apos;s First <span className="text-solar-gradient">Solar Cooperative</span> Society
-        </h1>
-        <div className="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-          <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-          <span className="text-primary font-semibold">About Us</span>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About Us"
+        icon="eco"
+        title={<>India&apos;s First <span className="text-solar-gradient">Solar Cooperative</span> Society</>}
+        subtitle="Meet the cooperative behind India's first community-owned rooftop solar movement."
+        image="/gallery/withbunchapeople.jpeg"
+        imageAlt="Solar Vistar cooperative community"
+      />
 
       {/* 2. STORY */}
       <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-20 md:py-28 relative">
@@ -217,6 +232,110 @@ export default function AboutUs() {
                 <p className="text-primary font-label-md uppercase tracking-wide">{member.role}</p>
               </GlassCard>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4.3. GOVERNANCE & REGISTRATION */}
+      <section className="w-full max-w-container-max mx-auto px-gutter md:px-lg py-16">
+        <GlassCard hover={false} className="!p-8 md:!p-10">
+          <div className="flex items-center gap-sm mb-lg">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span className="material-symbols-outlined fill">gavel</span>
+            </div>
+            <div>
+              <h3 className="font-headline-sm text-headline-sm text-on-surface">Governance &amp; Registration</h3>
+              <p className="font-body-sm text-sm text-on-surface-variant">Operating transparently under Indian cooperative law.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-md">
+            <div className="flex flex-col gap-1 border-l-2 border-primary/30 pl-4">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Registered Under</span>
+              <span className="font-body-md text-body-md text-on-surface font-semibold">MP Cooperative Societies Act</span>
+            </div>
+            <div className="flex flex-col gap-1 border-l-2 border-primary/30 pl-4">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Registration No.</span>
+              <span className="font-body-md text-body-md text-on-surface font-semibold">MPCS-2021/44</span>
+            </div>
+            <div className="flex flex-col gap-1 border-l-2 border-primary/30 pl-4">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Headquarters</span>
+              <span className="font-body-md text-body-md text-on-surface font-semibold">Khargone, Madhya Pradesh</span>
+            </div>
+            <div className="flex flex-col gap-1 border-l-2 border-primary/30 pl-4">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Coverage</span>
+              <span className="font-body-md text-body-md text-on-surface font-semibold">12 Districts in MP</span>
+            </div>
+          </div>
+        </GlassCard>
+      </section>
+
+      {/* 4.4. FEATURED PROJECTS */}
+      <section className="w-full bg-surface-container-low py-20 md:py-28">
+        <div className="max-w-container-max mx-auto px-gutter">
+          <SectionHeading
+            eyebrow="OUR WORK"
+            title="Featured Projects"
+            subtitle="A glimpse of the residential and community installations we've delivered across Madhya Pradesh."
+            centered
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            <GlassCard className="!p-0 overflow-hidden flex flex-col h-full border-outline-variant/30">
+              <div className="h-56 relative w-full">
+                <Image src="/gallery/withbunchapeople.jpeg" alt="The Sharma Residence solar installation" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full text-primary font-label-sm uppercase tracking-wider shadow-sm">
+                  Residential - 3kW
+                </div>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-headline-sm text-on-surface mb-1">The Sharma Residence</h3>
+                <p className="font-label-sm text-on-surface-variant uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[16px]">location_on</span> Indore, Madhya Pradesh
+                </p>
+                <p className="font-body-md text-on-surface-variant flex-1">Electricity bill went from ₹3,500/month to a ₹0 credit balance, with the full PM Surya Ghar subsidy handled end-to-end.</p>
+              </div>
+            </GlassCard>
+            <GlassCard className="!p-0 overflow-hidden flex flex-col h-full border-outline-variant/30">
+              <div className="h-56 relative w-full">
+                <Image src="/gallery/solarbrigade.jpeg" alt="Aaditya Cosmopolitan Society solar installation" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <div className="absolute top-4 right-4 bg-solar-orange/90 backdrop-blur-sm px-3 py-1 rounded-full text-white font-label-sm uppercase tracking-wider shadow-sm">
+                  Commercial - 15kW
+                </div>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-headline-sm text-on-surface mb-1">Aaditya Cosmopolitan Society</h3>
+                <p className="font-label-sm text-on-surface-variant uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[16px]">location_on</span> Dhar, Madhya Pradesh
+                </p>
+                <p className="font-body-md text-on-surface-variant flex-1">Cut common-area electricity costs by 15% for all 40 flats, funded through the cooperative&apos;s wholesale pricing model.</p>
+              </div>
+            </GlassCard>
+          </div>
+          <div className="flex justify-center mt-12">
+            <GradientButton href="/projects" className="flex items-center gap-xs">
+              View All Projects
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </GradientButton>
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5. GALLERY */}
+      <section className="w-full bg-surface-container-lowest py-20 md:py-28">
+        <div className="max-w-container-max mx-auto px-gutter">
+          <SectionHeading
+            eyebrow="GALLERY"
+            title="Life at Solar Vistar"
+            subtitle="Moments from our installations, community events, and the team behind the mission."
+            centered
+          />
+          <div className="mt-12">
+            <GalleryGrid images={galleryImages} />
+          </div>
+          <div className="flex justify-center mt-12">
+            <GradientButton href="/projects" className="!bg-none !bg-transparent border-[1.5px] border-primary !text-primary hover:!bg-primary/5 !shadow-none flex items-center gap-xs">
+              View Full Gallery
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </GradientButton>
           </div>
         </div>
       </section>

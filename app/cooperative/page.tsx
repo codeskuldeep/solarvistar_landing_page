@@ -3,6 +3,7 @@ import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Cooperative Society | Solar Vistar",
@@ -13,17 +14,14 @@ export default function CooperativeSociety() {
   return (
     <main className="w-full overflow-hidden">
       {/* Page Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-md md:px-gutter max-w-container-max mx-auto flex flex-col items-center text-center animate-fade-in-up">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-fixed-dim/40 via-surface to-surface"></div>
-        <div className="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant mb-md">
-          <span className="hover:text-primary cursor-pointer transition-colors">Home</span>
-          <span className="material-symbols-outlined fill text-[16px]">chevron_right</span>
-          <span className="text-primary font-medium">Cooperative Society</span>
-        </div>
-        <span className="font-label-md text-label-md text-solar-orange uppercase tracking-widest mb-sm">Cooperative Model</span>
-        <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">What is a Cooperative Society?</h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[672px] mx-auto">Empowering communities through mutual cooperation and sustainable energy solutions.</p>
-      </section>
+      <PageHero
+        eyebrow="Cooperative Model"
+        icon="groups"
+        title="What is a Cooperative Society?"
+        subtitle="Empowering communities through mutual cooperation and sustainable energy solutions."
+        image="/gallery/solarbrigade.jpeg"
+        imageAlt="Solar Vistar cooperative members"
+      />
 
       {/* Explanation Block */}
       <section className="py-20 md:py-28 px-md md:px-gutter max-w-container-max mx-auto">
@@ -198,7 +196,7 @@ export default function CooperativeSociety() {
           <GlassCard className="!p-8 bg-surface-container-lowest border-outline-variant/30 flex flex-col justify-between">
             <div>
               <span className="material-symbols-outlined text-4xl text-primary/40 mb-4 block">format_quote</span>
-              <p className="font-body-lg text-on-surface italic mb-6">"Joining the cooperative was the best decision for my family. We not only got a top-tier solar system at a fraction of the market cost, but we also feel like we are part of a larger community movement. Our electricity bill went from ₹3000 to zero."</p>
+              <p className="font-body-lg text-on-surface italic mb-6">&ldquo;Joining the cooperative was the best decision for my family. We not only got a top-tier solar system at a fraction of the market cost, but we also feel like we are part of a larger community movement. Our electricity bill went from ₹3000 to zero.&rdquo;</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">M</div>
@@ -211,7 +209,7 @@ export default function CooperativeSociety() {
           <GlassCard className="!p-8 bg-surface-container-lowest border-outline-variant/30 flex flex-col justify-between">
             <div>
               <span className="material-symbols-outlined text-4xl text-primary/40 mb-4 block">format_quote</span>
-              <p className="font-body-lg text-on-surface italic mb-6">"What impressed me most was the transparency. The cooperative showed me exactly what the panels cost them. The installation was swift, and the PM Surya Ghar subsidy was processed without me having to visit a single government office."</p>
+              <p className="font-body-lg text-on-surface italic mb-6">&ldquo;What impressed me most was the transparency. The cooperative showed me exactly what the panels cost them. The installation was swift, and the PM Surya Ghar subsidy was processed without me having to visit a single government office.&rdquo;</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">S</div>
@@ -229,7 +227,7 @@ export default function CooperativeSociety() {
         <div className="bg-surface-container rounded-3xl p-xl shadow-lg border border-outline-variant/30 flex items-center justify-center text-center relative overflow-hidden">
           <span className="material-symbols-outlined text-[120px] text-primary/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">format_quote</span>
           <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary relative z-10 max-w-4xl capitalize leading-tight">
-            &quot;Solar isn't just an alternative. It's the future we must build today.&quot;
+            &quot;Solar isn&apos;t just an alternative. It&apos;s the future we must build today.&quot;
           </h2>
         </div>
       </section>

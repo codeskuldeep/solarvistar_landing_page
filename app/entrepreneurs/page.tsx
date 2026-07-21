@@ -3,6 +3,7 @@ import Image from "next/image";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
 
 export const metadata: Metadata = {
   title: "Young Entrepreneurs | Solar Vistar",
@@ -13,42 +14,22 @@ export default function YoungEntrepreneurs() {
   return (
     <main className="w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-md overflow-hidden min-h-[600px] flex items-center">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 -z-10"></div>
-        
-        <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
-          <div className="flex flex-col gap-sm animate-fade-in-up">
-            <span className="font-label-md text-label-md text-solar-orange tracking-wider uppercase">Community &amp; Careers</span>
-            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Empowering Young Entrepreneurs</h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mt-sm max-w-[512px]">
-              Join a network of passionate young entrepreneurs contributing to India&apos;s clean-energy mission through mentorship and practical opportunity.
-            </p>
-            <div className="flex flex-wrap gap-sm mt-md">
-              <GradientButton href="/training">
-                Start Your Journey
-              </GradientButton>
-              <GradientButton href="/about" className="!bg-none !bg-transparent border-[1.5px] border-primary !text-primary hover:!bg-primary/5 !shadow-none">
-                Learn More
-              </GradientButton>
-            </div>
-          </div>
-          
-          <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden glass-card p-2 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <div className="w-full h-full rounded-xl overflow-hidden relative">
-              <Image 
-                className="object-cover transition-transform duration-700 hover:scale-105" 
-                alt="Young professionals collaborating" 
-                src="/gallery/whitetshirtguys.jpeg" 
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Community & Careers"
+        icon="trending_up"
+        title="Empowering Young Entrepreneurs"
+        subtitle="Join a network of passionate young entrepreneurs contributing to India's clean-energy mission through mentorship and practical opportunity."
+        image="/gallery/whitetshirtguys.jpeg"
+        imageAlt="Young professionals collaborating"
+        cta={
+          <>
+            <GradientButton href="/training">Start Your Journey</GradientButton>
+            <GradientButton href="/about" className="!bg-none !bg-transparent border-[1.5px] border-primary !text-primary hover:!bg-primary/5 !shadow-none">
+              Learn More
+            </GradientButton>
+          </>
+        }
+      />
 
       {/* Story Block */}
       <section className="py-20 md:py-28 px-md bg-surface-container-low">
@@ -200,7 +181,7 @@ export default function YoungEntrepreneurs() {
               <div>
                 <h4 className="font-headline-sm text-on-surface mb-1">Ravi Sharma</h4>
                 <p className="font-label-sm text-primary uppercase tracking-wider mb-4">Top Earner 2023 • Ujjain</p>
-                <p className="font-body-md text-on-surface-variant italic">"I started right after college with zero capital. The cooperative's training gave me the technical edge, and within 6 months, I built a team of 5 people. Last month we crossed ₹50 Lakhs in sales volume."</p>
+                <p className="font-body-md text-on-surface-variant italic">&ldquo;I started right after college with zero capital. The cooperative&apos;s training gave me the technical edge, and within 6 months, I built a team of 5 people. Last month we crossed ₹50 Lakhs in sales volume.&rdquo;</p>
               </div>
             </div>
             
@@ -211,7 +192,7 @@ export default function YoungEntrepreneurs() {
               <div>
                 <h4 className="font-headline-sm text-on-surface mb-1">Pooja Desai</h4>
                 <p className="font-label-sm text-primary uppercase tracking-wider mb-4">Community Leader • Dhar</p>
-                <p className="font-body-md text-on-surface-variant italic">"Being a woman in the energy sector seemed daunting, but the mentorship here is unmatched. I've now helped over 40 households switch to solar, and the financial independence I've gained is life-changing."</p>
+                <p className="font-body-md text-on-surface-variant italic">&ldquo;Being a woman in the energy sector seemed daunting, but the mentorship here is unmatched. I&apos;ve now helped over 40 households switch to solar, and the financial independence I&apos;ve gained is life-changing.&rdquo;</p>
               </div>
             </div>
           </div>

@@ -1,33 +1,37 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import GlassCard from "../../components/ui/GlassCard";
 import SectionHeading from "../../components/ui/SectionHeading";
 import GradientButton from "../../components/ui/GradientButton";
+import PageHero from "../../components/ui/PageHero";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
 
 export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showFallback, setShowFallback] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     setIsLoading(true);
     setError("");
+    setShowFallback(false);
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:5001/api/website/contact", {
+      const response = await fetch(`${API_BASE}/api/website/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(result.message || "Failed to submit inquiry");
@@ -36,8 +40,14 @@ export default function ContactUs() {
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 5000);
       form.reset();
-    } catch (err: any) {
-      setError(err.message || "An error occurred while submitting.");
+    } catch (err) {
+      if (err instanceof TypeError) {
+        // The request never reached the server (offline / backend unreachable)
+        setError("We couldn't reach our server right now. Please contact us directly instead — we respond fast on WhatsApp.");
+        setShowFallback(true);
+      } else {
+        setError(err instanceof Error ? err.message : "An error occurred while submitting.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -46,23 +56,14 @@ export default function ContactUs() {
   return (
     <main className="flex-grow w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-md relative overflow-hidden min-h-[400px] flex items-center justify-center">
-        <div className="absolute inset-0 z-[-1] opacity-30">
-          <Image 
-            src="/gallery/withbunchapeople.jpeg"
-            alt="Office setting"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-[-1]"></div>
-        <div className="max-w-container-max mx-auto text-center animate-fade-in-up">
-          <p className="font-label-md text-label-md text-primary tracking-widest uppercase mb-xs font-semibold">Get In Touch</p>
-          <h1 className="font-display-lg text-display-lg md:font-display-lg md:text-display-lg font-display-lg-mobile text-display-lg-mobile text-on-surface mb-sm">Contact Us</h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[672px] mx-auto">We&apos;re here to help you transition to clean, affordable solar energy. Reach out to our experts today.</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Get In Touch"
+        icon="support_agent"
+        title="Contact Us"
+        subtitle="We're here to help you transition to clean, affordable solar energy. Reach out to our experts today."
+        image="/gallery/fieldvi.jpeg"
+        imageAlt="Solar Vistar site visit"
+      />
 
       {/* Main Contact Section (Two Columns) */}
       <section className="py-20 md:py-28 px-md max-w-container-max mx-auto">
@@ -105,9 +106,21 @@ export default function ContactUs() {
               </div>
 
               {error && (
-                <div className="text-error text-sm mt-2">{error}</div>
+                <div className="text-error text-sm mt-2 flex flex-col gap-sm">
+                  <p>{error}</p>
+                  {showFallback && (
+                    <div className="flex flex-wrap gap-sm">
+                      <a href="tel:+919303127775" className="inline-flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+                        <span className="material-symbols-outlined text-[18px]">call</span> Call 9303127775
+                      </a>
+                      <a href="https://wa.me/919303127775" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-xs text-primary font-label-md text-label-md hover:underline">
+                        <span className="material-symbols-outlined text-[18px]">chat</span> WhatsApp Us
+                      </a>
+                    </div>
+                  )}
+                </div>
               )}
-              
+
               <div className="flex flex-col sm:flex-row gap-sm pt-sm">
                 <GradientButton type="submit" className="flex-1 font-semibold !w-full disabled:opacity-70" disabled={isLoading}>
                   {isLoading ? "Submitting..." : "Book Free Site Visit"}
@@ -131,7 +144,7 @@ export default function ContactUs() {
               <div>
                 <h3 className="font-headline-sm text-headline-sm text-on-surface mb-xs">Khargone Office</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-sm">Sahakarita Bhavan, in front of Shakti Dairy, Nutan Nagar, Khargone 451001.</p>
-                <a className="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" href="#">Get Directions <span className="material-symbols-outlined text-sm">arrow_forward</span></a>
+                <a className="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" href="https://www.google.com/maps/search/?api=1&query=Sahakarita+Bhavan+Shakti+Dairy+Nutan+Nagar+Khargone+451001" target="_blank" rel="noopener noreferrer">Get Directions <span className="material-symbols-outlined text-sm">arrow_forward</span></a>
               </div>
             </GlassCard>
             
@@ -143,7 +156,7 @@ export default function ContactUs() {
               <div>
                 <h3 className="font-headline-sm text-headline-sm text-on-surface mb-xs">Indore Office</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-sm">17 Aaditya Cosmopolitan, Lakhani Bypass, Mewar Road, Palda, Indore 452001.</p>
-                <a className="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" href="#">Get Directions <span className="material-symbols-outlined text-sm">arrow_forward</span></a>
+                <a className="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" href="https://www.google.com/maps/search/?api=1&query=17+Aaditya+Cosmopolitan+Lakhani+Bypass+Mewar+Road+Palda+Indore+452001" target="_blank" rel="noopener noreferrer">Get Directions <span className="material-symbols-outlined text-sm">arrow_forward</span></a>
               </div>
             </GlassCard>
             
@@ -226,20 +239,26 @@ export default function ContactUs() {
       {/* Service Areas */}
       <section className="py-20 md:py-28 px-md bg-surface-container-low">
         <div className="max-w-container-max mx-auto text-center">
-          <SectionHeading eyebrow="WHERE WE WORK" title="Our Service Areas" centered={true} />
-          <div className="flex flex-wrap justify-center gap-md">
-            <GlassCard hover={false} delay={0.1} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
-              <span className="font-label-md text-label-md text-on-surface">MP Madhya Kshetra</span>
-            </GlassCard>
-            <GlassCard hover={false} delay={0.2} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
-              <span className="font-label-md text-label-md text-on-surface">MP Paschim Kshetra</span>
-            </GlassCard>
-            <GlassCard hover={false} delay={0.3} className="!rounded-full px-lg py-sm flex items-center gap-sm shadow-sm">
-              <span className="material-symbols-outlined fill text-solar-orange">bolt</span>
-              <span className="font-label-md text-label-md text-on-surface">MP Purva Kshetra</span>
-            </GlassCard>
+          <SectionHeading
+            eyebrow="WHERE WE WORK"
+            title="Our Service Areas"
+            subtitle="Wherever you are within our coverage zones, you get the same site survey, subsidy paperwork, and installation standard."
+            centered={true}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
+            {[
+              { zone: "MP Madhya Kshetra", desc: "Central Madhya Pradesh — full survey-to-commissioning support.", icon: "bolt" },
+              { zone: "MP Paschim Kshetra", desc: "Western Madhya Pradesh, including our Khargone headquarters.", icon: "bolt" },
+              { zone: "MP Purva Kshetra", desc: "Eastern Madhya Pradesh — subsidy processing and net-metering support.", icon: "bolt" },
+            ].map((area) => (
+              <GlassCard key={area.zone} delay={0.1} className="!p-6 flex flex-col items-center text-center gap-2 shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-solar-orange/10 flex items-center justify-center text-solar-orange">
+                  <span className="material-symbols-outlined fill">{area.icon}</span>
+                </div>
+                <span className="font-headline-sm text-on-surface text-lg">{area.zone}</span>
+                <p className="font-body-md text-sm text-on-surface-variant">{area.desc}</p>
+              </GlassCard>
+            ))}
           </div>
         </div>
       </section>
